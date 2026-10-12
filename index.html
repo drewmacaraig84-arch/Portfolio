@@ -32,6 +32,7 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#certificates" class="nav-link">Certifications</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -67,6 +68,7 @@
         <a href="#about" class="mobile-nav-link">About</a>
         <a href="#skills" class="mobile-nav-link">Skills</a>
         <a href="#projects" class="mobile-nav-link">Projects</a>
+        <a href="#certificates" class="mobile-nav-link">Certifications</a>
         <a href="#experience" class="mobile-nav-link">Experience</a>
         <a href="#contact" class="mobile-nav-link">Contact</a>
     </div>
@@ -191,8 +193,8 @@
                             <div class="metric-label">Flagship Systems Built</div>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-number">100%</div>
-                            <div class="metric-label">Responsive & Cross-Device</div>
+                            <div class="metric-number">5</div>
+                            <div class="metric-label">Verified Certifications</div>
                         </div>
                         <div class="metric-item">
                             <div class="metric-number">&lt;100ms</div>
@@ -442,13 +444,14 @@
                 <!-- Project 1: School of Criminal Justice (SCJ) -->
                 <div class="project-card reveal-item">
                     <div class="project-card-header">
-                        <div class="project-preview-mockup">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                            </svg>
-                            <span>DWCC - SCJ Institutional Portal</span>
-                        </div>
-                        <span class="project-badge-tag">Academic Portal</span>
+                        <a href="https://scj-production.up.railway.app/index.php" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit School of Criminal Justice Live System">
+                            <span class="project-img-overlay-btn">
+                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                <span>Visit Live App</span>
+                            </span>
+                        </a>
+                        <img src="assets/projects/scj-portal.png" alt="School of Criminal Justice Portal Interface" class="project-card-img" loading="lazy">
+                        <span class="project-badge-tag badge-live"><span class="pulse-dot"></span> Live on Railway</span>
                     </div>
                     <div class="project-card-body">
                         <h3 class="project-title">School of Criminal Justice (SCJ) System</h3>
@@ -458,70 +461,39 @@
                         <div class="project-tech-tags">
                             <span class="tech-tag">PHP 8.3</span>
                             <span class="tech-tag">MySQL / SQLite</span>
-                            <span class="tech-tag">Custom Middleware</span>
+                            <span class="tech-tag">Railway PaaS</span>
                             <span class="tech-tag">CSRF Security</span>
                             <span class="tech-tag">CSS3</span>
                         </div>
                         <div class="project-footer-actions">
-                            <a href="https://github.com/drewmacaraig84-arch/SCJ" target="_blank" rel="noopener noreferrer" class="project-link-btn">
-                                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                <span>Source Code</span>
-                            </a>
+                            <div class="project-links-group">
+                                <a href="https://scj-production.up.railway.app/index.php" target="_blank" rel="noopener noreferrer" class="project-live-btn" title="Open Live Web Application">
+                                    <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                    <span>Live Demo</span>
+                                </a>
+                                <a href="https://github.com/drewmacaraig84-arch/SCJ" target="_blank" rel="noopener noreferrer" class="project-link-btn" title="View Source Code">
+                                    <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    <span>Source</span>
+                                </a>
+                            </div>
                             <div class="project-stats-meta">
-                                <span>⭐ Full-Stack</span>
+                                <span>⭐ Live System</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2: Weather & Flood Alert System -->
+                <!-- Project 2: AmigaTravel Tour & Booking Portal -->
                 <div class="project-card reveal-item">
                     <div class="project-card-header">
-                        <div class="project-preview-mockup">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
-                            </svg>
-                            <span>Live Weather & Hazard Telemetry</span>
-                        </div>
-                        <span class="project-badge-tag">Disaster Alert</span>
-                    </div>
-                    <div class="project-card-body">
-                        <h3 class="project-title">Weather & Flood Alert Early Warning System</h3>
-                        <p class="project-desc">
-                            Environmental risk tracking system with real-time precipitation intake, hazard status metrics, interactive geographic mapping of flood-prone zones, and automated risk alert notification triggers.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Live Telemetry API</span>
-                            <span class="tech-tag">Data Visuals</span>
-                            <span class="tech-tag">Bootstrap / CSS</span>
-                        </div>
-                        <div class="project-footer-actions">
-                            <a href="https://github.com/drewmacaraig84-arch/Weather_Flood_Alert_System" target="_blank" rel="noopener noreferrer" class="project-link-btn">
-                                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                <span>Source Code</span>
-                            </a>
-                            <div class="project-stats-meta">
-                                <span>🚨 Real-Time</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3: AmigaTravel Tour & Booking Portal -->
-                <div class="project-card reveal-item">
-                    <div class="project-card-header">
-                        <div class="project-preview-mockup">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                            <span>Travel Booking & Scheduler</span>
-                        </div>
-                        <span class="project-badge-tag">SaaS / Enterprise</span>
+                        <a href="https://www.amigagracia.com/" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit Amiga Gracia Travel Services Live Website">
+                            <span class="project-img-overlay-btn">
+                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                <span>Visit Live App</span>
+                            </span>
+                        </a>
+                        <img src="assets/projects/amiga-travel.png" alt="Amiga Gracia Travel Services Platform Interface" class="project-card-img" loading="lazy">
+                        <span class="project-badge-tag badge-live"><span class="pulse-dot"></span> Live in Production</span>
                     </div>
                     <div class="project-card-body">
                         <h3 class="project-title">AmigaTravel Tour & Booking Platform</h3>
@@ -536,48 +508,473 @@
                             <span class="tech-tag">Alpine.js</span>
                         </div>
                         <div class="project-footer-actions">
-                            <a href="https://github.com/drewmacaraig84-arch/AmigaTravel" target="_blank" rel="noopener noreferrer" class="project-link-btn">
-                                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                <span>Source Code</span>
-                            </a>
+                            <div class="project-links-group">
+                                <a href="https://www.amigagracia.com/" target="_blank" rel="noopener noreferrer" class="project-live-btn" title="Open Live Web Application">
+                                    <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                    <span>Live Demo</span>
+                                </a>
+                                <a href="https://github.com/drewmacaraig84-arch/AmigaTravel" target="_blank" rel="noopener noreferrer" class="project-link-btn" title="View Source Code">
+                                    <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    <span>Source</span>
+                                </a>
+                            </div>
                             <div class="project-stats-meta">
-                                <span>✈️ Production</span>
+                                <span>✈️ Live Portal</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 4: UAP-MC Architectural Chapter Portal -->
+                <!-- Project 3: UAP-MC Architectural Chapter Portal -->
                 <div class="project-card reveal-item">
                     <div class="project-card-header">
-                        <div class="project-preview-mockup">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
-                            <span>Architectural Chapter Management</span>
-                        </div>
-                        <span class="project-badge-tag">Organization</span>
+                        <a href="https://uap-mindorochapter.up.railway.app/" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit UAP Mindoro Chapter Live Portal">
+                            <span class="project-img-overlay-btn">
+                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                <span>Visit Live App</span>
+                            </span>
+                        </a>
+                        <img src="assets/projects/uap-mindoro.png" alt="UAP Mindoro Chapter Portal Live Website Preview" class="project-card-img" loading="lazy">
+                        <span class="project-badge-tag badge-live"><span class="pulse-dot"></span> Live on Railway</span>
                     </div>
                     <div class="project-card-body">
                         <h3 class="project-title">UAP-MC Architectural Chapter Portal</h3>
                         <p class="project-desc">
-                            Professional association platform providing member directories, CPD event management, institutional documentation, officer registry, and chapter activity archives.
+                            Official architectural chapter portal featuring member directory, partner showcases, CPD event documentation, and organization management — deployed live in production.
                         </p>
                         <div class="project-tech-tags">
                             <span class="tech-tag">PHP</span>
                             <span class="tech-tag">MySQL</span>
                             <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Railway PaaS</span>
                             <span class="tech-tag">Responsive UI</span>
                         </div>
                         <div class="project-footer-actions">
-                            <a href="https://github.com/drewmacaraig84-arch/uap_mc" target="_blank" rel="noopener noreferrer" class="project-link-btn">
-                                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                <span>Source Code</span>
-                            </a>
-                            <div class="project-stats-meta">
-                                <span>🏛️ Institutional</span>
+                            <div class="project-links-group">
+                                <a href="https://uap-mindorochapter.up.railway.app/" target="_blank" rel="noopener noreferrer" class="project-live-btn" title="Open Live Web Application">
+                                    <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                    <span>Live Demo</span>
+                                </a>
+                                <a href="https://github.com/drewmacaraig84-arch/uap_mc" target="_blank" rel="noopener noreferrer" class="project-link-btn" title="View Source Code">
+                                    <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    <span>Source</span>
+                                </a>
                             </div>
+                            <div class="project-stats-meta">
+                                <span>🏛️ Live Portal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             CERTIFICATIONS & VERIFIED BADGES SECTION
+             ========================================================================== -->
+        <section id="certificates" class="container">
+            <div class="section-header reveal-item">
+                <span class="section-tag">Credentials & Accreditations</span>
+                <h2>Certifications & Verified Badges</h2>
+                <p class="section-subtitle">Official industry certifications, national vocational qualifications, and accredited technical credentials earned through rigorous assessments.</p>
+            </div>
+
+            <!-- Verified Digital Badges Ribbon -->
+            <div class="badges-ribbon reveal-item">
+                <!-- Badge 1: CDSP -->
+                <div class="badge-item" style="--badge-accent: #10b981; --badge-glow: rgba(16, 185, 129, 0.4);">
+                    <div class="badge-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"></path>
+                            <polyline points="9 12 11 14 15 10"></polyline>
+                        </svg>
+                    </div>
+                    <div class="badge-meta">
+                        <div class="badge-title">Data Science Professional</div>
+                        <div class="badge-org">East West • DWCC • ICTIC</div>
+                        <div class="badge-tag"><span class="badge-tag-dot"></span> CDSP Certified</div>
+                    </div>
+                </div>
+
+                <!-- Badge 2: TESDA Java NC III -->
+                <div class="badge-item" style="--badge-accent: #f43f5e; --badge-glow: rgba(244, 63, 94, 0.4);">
+                    <div class="badge-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9 12l2 2 4-4"></path>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <div class="badge-meta">
+                        <div class="badge-title">Programming (Java) NC III</div>
+                        <div class="badge-org">TESDA • BCRV Tech-Voc</div>
+                        <div class="badge-tag"><span class="badge-tag-dot"></span> Proud TESDA Scholar</div>
+                    </div>
+                </div>
+
+                <!-- Badge 3: Cisco JS Essentials -->
+                <div class="badge-item" style="--badge-accent: #06b6d4; --badge-glow: rgba(6, 182, 212, 0.4);">
+                    <div class="badge-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                            <line x1="14" y1="4" x2="10" y2="20"></line>
+                        </svg>
+                    </div>
+                    <div class="badge-meta">
+                        <div class="badge-title">JavaScript Essentials 1</div>
+                        <div class="badge-org">Cisco Networking Academy</div>
+                        <div class="badge-tag"><span class="badge-tag-dot"></span> JS Institute Verified</div>
+                    </div>
+                </div>
+
+                <!-- Badge 4: Simplilearn JS -->
+                <div class="badge-item" style="--badge-accent: #f59e0b; --badge-glow: rgba(245, 158, 11, 0.4);">
+                    <div class="badge-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <div class="badge-meta">
+                        <div class="badge-title">JavaScript for Beginners</div>
+                        <div class="badge-org">Simplilearn SkillUp</div>
+                        <div class="badge-tag"><span class="badge-tag-dot"></span> Verified Completion</div>
+                    </div>
+                </div>
+
+                <!-- Badge 5: Simplilearn SQL -->
+                <div class="badge-item" style="--badge-accent: #6366f1; --badge-glow: rgba(99, 102, 241, 0.4);">
+                    <div class="badge-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                        </svg>
+                    </div>
+                    <div class="badge-meta">
+                        <div class="badge-title">Introduction to SQL</div>
+                        <div class="badge-org">Simplilearn SkillUp</div>
+                        <div class="badge-tag"><span class="badge-tag-dot"></span> Database Verified</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Credential Filter Tabs -->
+            <div class="cert-filter-nav reveal-item" role="tablist">
+                <button type="button" class="cert-filter-btn active" data-filter="all">All Credentials (5)</button>
+                <button type="button" class="cert-filter-btn" data-filter="professional">Professional & National (2)</button>
+                <button type="button" class="cert-filter-btn" data-filter="web">Frontend & JavaScript (2)</button>
+                <button type="button" class="cert-filter-btn" data-filter="data">Database & Analytics (2)</button>
+            </div>
+
+            <!-- Credentials & Certificates Grid -->
+            <div class="certs-grid" id="certs-container">
+                <!-- Cert 1: CDSP (Certified Data Science Professional) -->
+                <div class="cert-card reveal-item" 
+                     data-category="professional data"
+                     data-title="Certified Data Science Professional (CDSP)"
+                     data-issuer="East West International Educational Specialists • Divine Word College of Calapan • ICTIC • eduexpert"
+                     data-date="November 13, 2025"
+                     data-code="RTO0rLph"
+                     data-img="assets/certificates/cdsp-data-science.png"
+                     data-pdf="assets/certificates/cdsp-data-science.pdf"
+                     data-skills="Data Science, Predictive Modeling, Analytical Architecture, Machine Learning Foundations, Research">
+                    <div class="cert-preview-wrapper" data-cert-target="modal" title="Click to view full certificate">
+                        <span class="cert-badge-floating" style="--badge-tag-color: #34d399;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"></path></svg>
+                            <span>East West & DWCC</span>
+                        </span>
+                        <span class="cert-verified-pill">
+                            <span class="pulse-dot"></span>
+                            <span>Verified Credential</span>
+                        </span>
+                        <img src="assets/certificates/cdsp-data-science.png" alt="Certified Data Science Professional Certificate Preview" class="cert-preview-img" loading="lazy">
+                        <div class="cert-preview-overlay">
+                            <span class="cert-preview-overlay-btn">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Inspect Certificate</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cert-card-body">
+                        <div class="cert-issuer-row">
+                            <span class="cert-issuer-name">East West • DWCC • eduexpert</span>
+                            <span class="cert-date">Nov 13, 2025</span>
+                        </div>
+                        <h3 class="cert-title">Certified Data Science Professional (CDSP)</h3>
+                        <div class="cert-recipient">
+                            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span>Awarded to: <strong>Drew Marion F. Macaraig, CDSP</strong></span>
+                        </div>
+                        <div class="cert-code-chip">
+                            <span>Verification Code: <strong class="cert-code-val">RTO0rLph</strong></span>
+                            <button type="button" class="cert-copy-btn" data-code="RTO0rLph" title="Copy verification code" aria-label="Copy verification code">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                        <div class="cert-skills-tags">
+                            <span class="cert-skill-tag">Data Science</span>
+                            <span class="cert-skill-tag">Predictive Analytics</span>
+                            <span class="cert-skill-tag">Data Modeling</span>
+                            <span class="cert-skill-tag">Machine Learning</span>
+                        </div>
+                        <div class="cert-footer-actions">
+                            <button type="button" class="cert-inspect-btn" data-cert-target="modal">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                <span>Preview</span>
+                            </button>
+                            <a href="assets/certificates/cdsp-data-science.pdf" target="_blank" rel="noopener noreferrer" class="cert-pdf-link">
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                <span>Original PDF</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 2: TESDA Java NC III Qualification & Scholar -->
+                <div class="cert-card reveal-item" 
+                     data-category="professional"
+                     data-title="Programming (Java) NC III Qualification & Scholar Badge"
+                     data-issuer="TESDA (Technical Education and Skills Development Authority) • BCRV Tech-Voc, Inc."
+                     data-date="Academic Term 2026"
+                     data-code="26-ICT-039"
+                     data-img="assets/certificates/tesda-java-nc3.jpg"
+                     data-pdf="assets/certificates/tesda-java-nc3.jpg"
+                     data-skills="Java OOP, Application Logic, Algorithm Design, Data Structures, Software Engineering, NC III Qualification">
+                    <div class="cert-preview-wrapper" data-cert-target="modal" title="Click to view full credential">
+                        <span class="cert-badge-floating" style="--badge-tag-color: #fb7185;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 6 12 12 16 14"></polygon></svg>
+                            <span>TESDA & BCRV</span>
+                        </span>
+                        <span class="cert-verified-pill" style="background: rgba(159, 18, 57, 0.85); border-color: rgba(244, 63, 94, 0.4); color: #fecdd3;">
+                            <span class="pulse-dot" style="background: #f43f5e; box-shadow: 0 0 8px #f43f5e;"></span>
+                            <span>National Qualification</span>
+                        </span>
+                        <img src="assets/certificates/tesda-java-nc3.jpg" alt="TESDA Programming (Java) NC III Credential" class="cert-preview-img" loading="lazy">
+                        <div class="cert-preview-overlay">
+                            <span class="cert-preview-overlay-btn">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Inspect Credential</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cert-card-body">
+                        <div class="cert-issuer-row">
+                            <span class="cert-issuer-name" style="color: #fb7185;">TESDA • BCRV Tech-Voc</span>
+                            <span class="cert-date">Term 2026</span>
+                        </div>
+                        <h3 class="cert-title">Programming (Java) NC III Qualification</h3>
+                        <div class="cert-recipient">
+                            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span>Awarded to: <strong>Drew Marion F. Macaraig</strong></span>
+                        </div>
+                        <div class="cert-code-chip">
+                            <span>Scholar ID: <strong class="cert-code-val">26-ICT-039</strong></span>
+                            <button type="button" class="cert-copy-btn" data-code="26-ICT-039" title="Copy scholar ID" aria-label="Copy scholar ID">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                        <div class="cert-skills-tags">
+                            <span class="cert-skill-tag">Java OOP</span>
+                            <span class="cert-skill-tag">Algorithm Design</span>
+                            <span class="cert-skill-tag">Systems Architecture</span>
+                            <span class="cert-skill-tag">NC III Certified</span>
+                        </div>
+                        <div class="cert-footer-actions">
+                            <button type="button" class="cert-inspect-btn" data-cert-target="modal">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                <span>Preview</span>
+                            </button>
+                            <a href="assets/certificates/tesda-java-nc3.jpg" target="_blank" rel="noopener noreferrer" class="cert-pdf-link">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                <span>Official ID / Doc</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 3: Cisco JavaScript Essentials 1 -->
+                <div class="cert-card reveal-item" 
+                     data-category="web"
+                     data-title="JavaScript Essentials 1"
+                     data-issuer="Cisco Networking Academy • OpenEDG JS Institute"
+                     data-date="28 Apr 2026"
+                     data-code="1b69623e-fb91-4a47-824c-40293d1e732d"
+                     data-img="assets/certificates/cisco-javascript-essentials.png"
+                     data-pdf="assets/certificates/cisco-javascript-essentials.pdf"
+                     data-skills="JavaScript ES6+, Core Logic, Functions, Scope, Data Types, Control Structures, Modern Web">
+                    <div class="cert-preview-wrapper" data-cert-target="modal" title="Click to view full certificate">
+                        <span class="cert-badge-floating" style="--badge-tag-color: #22d3ee;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            <span>Cisco & OpenEDG</span>
+                        </span>
+                        <span class="cert-verified-pill">
+                            <span class="pulse-dot"></span>
+                            <span>Verified Credential</span>
+                        </span>
+                        <img src="assets/certificates/cisco-javascript-essentials.png" alt="Cisco JavaScript Essentials 1 Certificate Preview" class="cert-preview-img" loading="lazy">
+                        <div class="cert-preview-overlay">
+                            <span class="cert-preview-overlay-btn">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Inspect Certificate</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cert-card-body">
+                        <div class="cert-issuer-row">
+                            <span class="cert-issuer-name">Cisco Networking Academy</span>
+                            <span class="cert-date">Apr 28, 2026</span>
+                        </div>
+                        <h3 class="cert-title">JavaScript Essentials 1</h3>
+                        <div class="cert-recipient">
+                            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span>Awarded to: <strong>Drew Macaraig</strong></span>
+                        </div>
+                        <div class="cert-code-chip">
+                            <span>Cert ID: <strong class="cert-code-val">1b69623e...e732d</strong></span>
+                            <button type="button" class="cert-copy-btn" data-code="1b69623e-fb91-4a47-824c-40293d1e732d" title="Copy certificate ID" aria-label="Copy certificate ID">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                        <div class="cert-skills-tags">
+                            <span class="cert-skill-tag">JavaScript (ES6+)</span>
+                            <span class="cert-skill-tag">Control Flow</span>
+                            <span class="cert-skill-tag">Functions & Scope</span>
+                            <span class="cert-skill-tag">Algorithmic Logic</span>
+                        </div>
+                        <div class="cert-footer-actions">
+                            <button type="button" class="cert-inspect-btn" data-cert-target="modal">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                <span>Preview</span>
+                            </button>
+                            <a href="assets/certificates/cisco-javascript-essentials.pdf" target="_blank" rel="noopener noreferrer" class="cert-pdf-link">
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                <span>Original PDF</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 4: Simplilearn JavaScript for Beginners -->
+                <div class="cert-card reveal-item" 
+                     data-category="web"
+                     data-title="JavaScript for Beginners"
+                     data-issuer="Simplilearn SkillUp"
+                     data-date="29th April 2026"
+                     data-code="10168349"
+                     data-img="assets/certificates/simplilearn-javascript.png"
+                     data-pdf="assets/certificates/simplilearn-javascript.pdf"
+                     data-skills="JavaScript Fundamentals, DOM APIs, Event Handling, Web Scripting, Interactive UI">
+                    <div class="cert-preview-wrapper" data-cert-target="modal" title="Click to view full certificate">
+                        <span class="cert-badge-floating" style="--badge-tag-color: #fbbf24;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <span>Simplilearn SkillUp</span>
+                        </span>
+                        <span class="cert-verified-pill">
+                            <span class="pulse-dot"></span>
+                            <span>Verified Credential</span>
+                        </span>
+                        <img src="assets/certificates/simplilearn-javascript.png" alt="Simplilearn JavaScript for Beginners Certificate Preview" class="cert-preview-img" loading="lazy">
+                        <div class="cert-preview-overlay">
+                            <span class="cert-preview-overlay-btn">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Inspect Certificate</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cert-card-body">
+                        <div class="cert-issuer-row">
+                            <span class="cert-issuer-name" style="color: #fbbf24;">Simplilearn SkillUp</span>
+                            <span class="cert-date">Apr 29, 2026</span>
+                        </div>
+                        <h3 class="cert-title">JavaScript for Beginners</h3>
+                        <div class="cert-recipient">
+                            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span>Awarded to: <strong>Drew Marion F. Macaraig</strong></span>
+                        </div>
+                        <div class="cert-code-chip">
+                            <span>Certificate Code: <strong class="cert-code-val">10168349</strong></span>
+                            <button type="button" class="cert-copy-btn" data-code="10168349" title="Copy certificate code" aria-label="Copy certificate code">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                        <div class="cert-skills-tags">
+                            <span class="cert-skill-tag">DOM Manipulation</span>
+                            <span class="cert-skill-tag">Event Handlers</span>
+                            <span class="cert-skill-tag">Browser APIs</span>
+                            <span class="cert-skill-tag">Frontend Logic</span>
+                        </div>
+                        <div class="cert-footer-actions">
+                            <button type="button" class="cert-inspect-btn" data-cert-target="modal">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                <span>Preview</span>
+                            </button>
+                            <a href="assets/certificates/simplilearn-javascript.pdf" target="_blank" rel="noopener noreferrer" class="cert-pdf-link">
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                <span>Original PDF</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 5: Simplilearn Introduction to SQL -->
+                <div class="cert-card reveal-item" 
+                     data-category="data"
+                     data-title="Introduction to SQL"
+                     data-issuer="Simplilearn SkillUp"
+                     data-date="3rd June 2026"
+                     data-code="10302465"
+                     data-img="assets/certificates/simplilearn-sql.png"
+                     data-pdf="assets/certificates/simplilearn-sql.pdf"
+                     data-skills="SQL Queries, Relational Databases, Joins, Aggregations, Schema Architecture, CRUD Operations">
+                    <div class="cert-preview-wrapper" data-cert-target="modal" title="Click to view full certificate">
+                        <span class="cert-badge-floating" style="--badge-tag-color: #818cf8;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                            <span>Simplilearn SkillUp</span>
+                        </span>
+                        <span class="cert-verified-pill">
+                            <span class="pulse-dot"></span>
+                            <span>Verified Credential</span>
+                        </span>
+                        <img src="assets/certificates/simplilearn-sql.png" alt="Simplilearn Introduction to SQL Certificate Preview" class="cert-preview-img" loading="lazy">
+                        <div class="cert-preview-overlay">
+                            <span class="cert-preview-overlay-btn">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                <span>Inspect Certificate</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cert-card-body">
+                        <div class="cert-issuer-row">
+                            <span class="cert-issuer-name" style="color: #818cf8;">Simplilearn SkillUp</span>
+                            <span class="cert-date">Jun 3, 2026</span>
+                        </div>
+                        <h3 class="cert-title">Introduction to SQL</h3>
+                        <div class="cert-recipient">
+                            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span>Awarded to: <strong>Drew Marion F. Macaraig</strong></span>
+                        </div>
+                        <div class="cert-code-chip">
+                            <span>Certificate Code: <strong class="cert-code-val">10302465</strong></span>
+                            <button type="button" class="cert-copy-btn" data-code="10302465" title="Copy certificate code" aria-label="Copy certificate code">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                        <div class="cert-skills-tags">
+                            <span class="cert-skill-tag">SQL Syntax</span>
+                            <span class="cert-skill-tag">Table Joins</span>
+                            <span class="cert-skill-tag">Data Normalization</span>
+                            <span class="cert-skill-tag">Aggregations</span>
+                        </div>
+                        <div class="cert-footer-actions">
+                            <button type="button" class="cert-inspect-btn" data-cert-target="modal">
+                                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                <span>Preview</span>
+                            </button>
+                            <a href="assets/certificates/simplilearn-sql.pdf" target="_blank" rel="noopener noreferrer" class="cert-pdf-link">
+                                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                <span>Original PDF</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -705,6 +1102,57 @@
             </div>
         </section>
     </main>
+
+    <!-- ==========================================================================
+         CERTIFICATE LIGHTBOX MODAL
+         ========================================================================== -->
+    <div class="cert-modal-backdrop" id="cert-modal" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+        <div class="cert-modal-content">
+            <div class="cert-modal-header">
+                <div class="cert-modal-header-info">
+                    <h3 class="cert-modal-title" id="cert-modal-title">Certificate Title</h3>
+                    <span class="cert-modal-subtitle" id="cert-modal-subtitle">Issuer • Completion Date</span>
+                </div>
+                <button type="button" class="cert-modal-close-btn" id="cert-modal-close" aria-label="Close certificate lightbox">
+                    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="cert-modal-body">
+                <div class="cert-modal-image-col">
+                    <img src="" alt="Certificate Preview" id="cert-modal-img" class="cert-modal-image">
+                </div>
+                <div class="cert-modal-details-col">
+                    <div class="cert-modal-meta-card">
+                        <div class="cert-modal-meta-label">Issuing Authority</div>
+                        <div class="cert-modal-meta-value" id="cert-modal-issuer">Issuer Name</div>
+                    </div>
+                    <div class="cert-modal-meta-card">
+                        <div class="cert-modal-meta-label">Completion / Term Date</div>
+                        <div class="cert-modal-meta-value" id="cert-modal-date">Date</div>
+                    </div>
+                    <div class="cert-modal-meta-card">
+                        <div class="cert-modal-meta-label">Credential Verification Code</div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: 0.25rem;">
+                            <span class="cert-modal-meta-value" id="cert-modal-code" style="font-family: var(--font-mono); font-size: 0.88rem; word-break: break-all;">CODE</span>
+                            <button type="button" class="cert-copy-btn" id="cert-modal-copy-btn" title="Copy credential code" aria-label="Copy code">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cert-modal-meta-card">
+                        <div class="cert-modal-meta-label">Verified Competencies</div>
+                        <div class="cert-skills-tags" id="cert-modal-skills" style="margin-top: 0.5rem; margin-bottom: 0;"></div>
+                    </div>
+                    <div class="cert-modal-actions">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="cert-modal-pdf" style="width: 100%;">
+                            <span>Open Authentic Document</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Interactive Toast Notice -->
     <div class="toast-notice" id="toast-notice" role="status" aria-live="polite">

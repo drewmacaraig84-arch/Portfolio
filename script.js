@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initScrollReveal();
     initSkillFilters();
+    initCertificateFilters();
+    initCertificateModal();
+    initCertificateCopy();
     initCopyEmail();
     initGitHubStats();
 });
@@ -126,16 +129,40 @@ function initScrollReveal() {
                 // Subtle stagger
                 setTimeout(() => {
                     entry.target.classList.add('revealed');
-                }, idx * 40);
+                }, idx * 30);
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.05,
+        rootMargin: '100px 0px 100px 0px'
     });
 
     revealItems.forEach(item => revealObserver.observe(item));
+
+    // Reveal section items if page loaded with a hash or on nav click
+    function revealTargetSection() {
+        if (window.location.hash) {
+            const targetSec = document.querySelector(window.location.hash);
+            if (targetSec) {
+                targetSec.querySelectorAll('.reveal-item').forEach(el => el.classList.add('revealed'));
+            }
+        }
+    }
+    revealTargetSection();
+    window.addEventListener('hashchange', revealTargetSection);
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', () => {
+            const targetId = anchor.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    targetEl.querySelectorAll('.reveal-item').forEach(el => el.classList.add('revealed'));
+                }
+            }
+        });
+    });
 }
 
 /* ==========================================================================
@@ -172,12 +199,205 @@ function initSkillFilters() {
     });
 }
 
+/* Toast notification helper */
+function triggerToast(message) {
+    const toast = document.getElementById('toast-notice');
+    if (!toast) return;
+    const textSpan = toast.querySelector('span');
+    if (textSpan && message) {
+        textSpan.textContent = message;
+    }
+    toast.classList.add('show');
+    clearTimeout(window.__toastTimeout);
+    window.__toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2800);
+}
+
 /* ==========================================================================
-   5. INTERACTIVE EMAIL CLIPBOARD COPY
+   5. CERTIFICATION & BADGE FILTERABLE TABS
+   ========================================================================== */
+function initCertificateFilters() {
+    const filterButtons = document.querySelectorAll('.cert-filter-btn');
+    const certCards = document.querySelectorAll('.cert-card');
+
+    if (!filterButtons.length) return;
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            certCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                const categories = cardCategory ? cardCategory.split(' ') : [];
+                const matches = filterValue === 'all' || categories.includes(filterValue);
+
+                if (matches) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 20);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(10px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 200);
+                }
+            });
+        });
+    });
+}
+
+/* ==========================================================================
+   6. CERTIFICATE LIGHTBOX MODAL & PREVIEW
+   ========================================================================== */
+function initCertificateModal() {
+    const modalBackdrop = document.getElementById('cert-modal');
+    if (!modalBackdrop) return;
+
+    const closeBtn = document.getElementById('cert-modal-close');
+    const modalImg = document.getElementById('cert-modal-img');
+    const modalTitle = document.getElementById('cert-modal-title');
+    const modalSubtitle = document.getElementById('cert-modal-subtitle');
+    const modalIssuer = document.getElementById('cert-modal-issuer');
+    const modalDate = document.getElementById('cert-modal-date');
+    const modalCode = document.getElementById('cert-modal-code');
+    const modalSkills = document.getElementById('cert-modal-skills');
+    const modalPdfBtn = document.getElementById('cert-modal-pdf');
+    const modalCopyBtn = document.getElementById('cert-modal-copy-btn');
+
+    let currentCertCode = '';
+
+    function openModal(data) {
+        currentCertCode = data.code || '';
+        if (modalImg) {
+            modalImg.src = data.img;
+            modalImg.alt = `${data.title} Certificate Preview`;
+        }
+        if (modalTitle) modalTitle.textContent = data.title;
+        if (modalSubtitle) modalSubtitle.textContent = `${data.issuer} • ${data.date}`;
+        if (modalIssuer) modalIssuer.textContent = data.issuer;
+        if (modalDate) modalDate.textContent = data.date;
+        if (modalCode) modalCode.textContent = data.code || 'Official Credential';
+        
+        if (modalSkills) {
+            modalSkills.innerHTML = data.skills
+                .filter(s => s.trim().length > 0)
+                .map(s => `<span class="cert-skill-tag">${s.trim()}</span>`)
+                .join(' ');
+        }
+
+        if (modalPdfBtn) {
+            if (data.pdf && data.pdf.trim() !== '') {
+                modalPdfBtn.href = data.pdf;
+                modalPdfBtn.style.display = 'inline-flex';
+            } else {
+                modalPdfBtn.style.display = 'none';
+            }
+        }
+
+        modalBackdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modalBackdrop.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Modal copy code button
+    if (modalCopyBtn) {
+        modalCopyBtn.addEventListener('click', async () => {
+            if (!currentCertCode) return;
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(currentCertCode);
+                }
+                triggerToast(`Credential code copied: ${currentCertCode}`);
+            } catch (err) {
+                console.warn('Could not copy code:', err);
+            }
+        });
+    }
+
+    // Bind triggers on all cards
+    document.querySelectorAll('[data-cert-target]').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            const card = trigger.closest('.cert-card');
+            if (!card) return;
+
+            const certData = {
+                title: card.dataset.title || '',
+                issuer: card.dataset.issuer || '',
+                date: card.dataset.date || '',
+                code: card.dataset.code || '',
+                img: card.dataset.img || '',
+                pdf: card.dataset.pdf || '',
+                skills: (card.dataset.skills || '').split(',')
+            };
+
+            openModal(certData);
+        });
+    });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) {
+            closeModal();
+        }
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalBackdrop.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
+/* ==========================================================================
+   7. CREDENTIAL CODE CLIPBOARD COPY
+   ========================================================================== */
+function initCertificateCopy() {
+    const copyButtons = document.querySelectorAll('.cert-copy-btn');
+    copyButtons.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            const codeToCopy = btn.getAttribute('data-code');
+            if (!codeToCopy) return;
+
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(codeToCopy);
+                } else {
+                    const temp = document.createElement('input');
+                    temp.value = codeToCopy;
+                    document.body.appendChild(temp);
+                    temp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(temp);
+                }
+                triggerToast(`Credential code (${codeToCopy}) copied!`);
+            } catch (err) {
+                console.warn('Copy error: ', err);
+            }
+        });
+    });
+}
+
+/* ==========================================================================
+   8. INTERACTIVE EMAIL CLIPBOARD COPY
    ========================================================================== */
 function initCopyEmail() {
     const copyBtn = document.getElementById('copy-email-btn');
-    const toast = document.getElementById('toast-notice');
     const emailToCopy = 'macaraigdrew99@gmail.com';
 
     if (!copyBtn) return;
@@ -196,13 +416,7 @@ function initCopyEmail() {
                 document.body.removeChild(tempInput);
             }
 
-            // Show Toast feedback
-            if (toast) {
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2600);
-            }
+            triggerToast('Email copied to clipboard!');
         } catch (err) {
             console.warn('Could not copy text: ', err);
             window.location.href = `mailto:${emailToCopy}`;
