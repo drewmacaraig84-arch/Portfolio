@@ -1,9 +1,10 @@
-/**
- * Portfolio Interactive Scripts
- * Standards: UI/UX Pro Max Motion & Accessibility
- * Author: Drew Macaraig
- */
+/* ==========================================================================
+   PORTFOLIO SCRIPTS - DREW MACARAIG
+   ========================================================================== */
 
+/* ==========================================================================
+   INITIALIZATION
+   ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initNavbar();
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCertificateCopy();
     initCopyEmail();
     initGitHubStats();
+    initInspectProtection();
 });
 
 /* ==========================================================================
@@ -23,11 +25,10 @@ function initTheme() {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const root = document.documentElement;
 
-    // Check saved theme or system preference
     const savedTheme = localStorage.getItem('drew_portfolio_theme');
     const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    const initialTheme = savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'dark'); // Default to sleek dark mode
+    const initialTheme = savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'dark');
     root.setAttribute('data-theme', initialTheme);
 
     if (themeToggleBtn) {
@@ -53,7 +54,6 @@ function initNavbar() {
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
     const sections = document.querySelectorAll('section[id]');
 
-    // Navbar shadow on scroll
     window.addEventListener('scroll', () => {
         if (window.scrollY > 30) {
             navbar.classList.add('scrolled');
@@ -62,7 +62,6 @@ function initNavbar() {
         }
     }, { passive: true });
 
-    // Mobile drawer toggle
     function toggleMobileMenu(open) {
         const isOpen = open !== undefined ? open : !hamburgerBtn.classList.contains('open');
         hamburgerBtn.classList.toggle('open', isOpen);
@@ -83,7 +82,6 @@ function initNavbar() {
         link.addEventListener('click', () => toggleMobileMenu(false));
     });
 
-    // Scrollspy for active link indicator
     const observerOptions = {
         root: null,
         rootMargin: '-20% 0px -70% 0px',
@@ -116,7 +114,6 @@ function initScrollReveal() {
     const revealItems = document.querySelectorAll('.reveal-item');
     if (!revealItems.length) return;
 
-    // Respect prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
         revealItems.forEach(item => item.classList.add('revealed'));
@@ -126,7 +123,6 @@ function initScrollReveal() {
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry, idx) => {
             if (entry.isIntersecting) {
-                // Subtle stagger
                 setTimeout(() => {
                     entry.target.classList.add('revealed');
                 }, idx * 30);
@@ -140,7 +136,6 @@ function initScrollReveal() {
 
     revealItems.forEach(item => revealObserver.observe(item));
 
-    // Reveal section items if page loaded with a hash or on nav click
     function revealTargetSection() {
         if (window.location.hash) {
             const targetSec = document.querySelector(window.location.hash);
@@ -199,7 +194,9 @@ function initSkillFilters() {
     });
 }
 
-/* Toast notification helper */
+/* ==========================================================================
+   5. TOAST NOTIFICATIONS
+   ========================================================================== */
 function triggerToast(message) {
     const toast = document.getElementById('toast-notice');
     if (!toast) return;
@@ -215,7 +212,7 @@ function triggerToast(message) {
 }
 
 /* ==========================================================================
-   5. CERTIFICATION & BADGE FILTERABLE TABS
+   6. CERTIFICATION & BADGE FILTERABLE TABS
    ========================================================================== */
 function initCertificateFilters() {
     const filterButtons = document.querySelectorAll('.cert-filter-btn');
@@ -254,7 +251,7 @@ function initCertificateFilters() {
 }
 
 /* ==========================================================================
-   6. CERTIFICATE LIGHTBOX MODAL & PREVIEW
+   7. CERTIFICATE LIGHTBOX MODAL & PREVIEW
    ========================================================================== */
 function initCertificateModal() {
     const modalBackdrop = document.getElementById('cert-modal');
@@ -310,7 +307,6 @@ function initCertificateModal() {
         document.body.style.overflow = '';
     }
 
-    // Modal copy code button
     if (modalCopyBtn) {
         modalCopyBtn.addEventListener('click', async () => {
             if (!currentCertCode) return;
@@ -325,7 +321,6 @@ function initCertificateModal() {
         });
     }
 
-    // Bind triggers on all cards
     document.querySelectorAll('[data-cert-target]').forEach(trigger => {
         trigger.addEventListener('click', (e) => {
             e.preventDefault();
@@ -364,7 +359,7 @@ function initCertificateModal() {
 }
 
 /* ==========================================================================
-   7. CREDENTIAL CODE CLIPBOARD COPY
+   8. CREDENTIAL CODE CLIPBOARD COPY
    ========================================================================== */
 function initCertificateCopy() {
     const copyButtons = document.querySelectorAll('.cert-copy-btn');
@@ -394,7 +389,7 @@ function initCertificateCopy() {
 }
 
 /* ==========================================================================
-   8. INTERACTIVE EMAIL CLIPBOARD COPY
+   9. INTERACTIVE EMAIL CLIPBOARD COPY
    ========================================================================== */
 function initCopyEmail() {
     const copyBtn = document.getElementById('copy-email-btn');
@@ -407,7 +402,6 @@ function initCopyEmail() {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 await navigator.clipboard.writeText(emailToCopy);
             } else {
-                // Fallback for older browsers
                 const tempInput = document.createElement('input');
                 tempInput.value = emailToCopy;
                 document.body.appendChild(tempInput);
@@ -425,7 +419,7 @@ function initCopyEmail() {
 }
 
 /* ==========================================================================
-   6. GITHUB REPOSITORIES LIVE STATUS CHECK (NON-BLOCKING)
+   10. GITHUB REPOSITORIES LIVE STATUS (NON-BLOCKING)
    ========================================================================== */
 async function initGitHubStats() {
     const GITHUB_USERNAME = 'drewmacaraig84-arch';
@@ -440,7 +434,6 @@ async function initGitHubStats() {
         const repos = await response.json();
         if (!Array.isArray(repos) || repos.length === 0) return;
 
-        // Map live stargazers/stats if applicable
         repos.forEach(repo => {
             const cardLinks = document.querySelectorAll(`a[href*="${repo.name}"]`);
             cardLinks.forEach(link => {
@@ -454,7 +447,66 @@ async function initGitHubStats() {
             });
         });
     } catch (e) {
-        // Silent graceful fallback, curated projects remain perfectly visible
         console.info('GitHub live stats loaded in offline/curated mode.');
     }
+}
+
+/* ==========================================================================
+   11. INSPECT & SOURCE PROTECTION
+   ========================================================================== */
+function initInspectProtection() {
+    // 1. Prevent Right-Click Context Menu
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        triggerToast('Right-click inspection is disabled.');
+        return false;
+    });
+
+    // 2. Prevent DevTools & Source Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+        const isMac = navigator.platform && navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const ctrlOrCmd = isMac ? e.metaKey : e.ctrlKey;
+        const key = (e.key || '').toLowerCase();
+        const keyCode = e.keyCode || e.which;
+
+        // F12 key
+        if (key === 'f12' || keyCode === 123) {
+            e.preventDefault();
+            e.stopPropagation();
+            triggerToast('Developer Tools access is disabled.');
+            return false;
+        }
+
+        // Ctrl/Cmd + Shift + I (Inspect), J (Console), C (Element Picker)
+        if (ctrlOrCmd && e.shiftKey && (key === 'i' || key === 'j' || key === 'c' || keyCode === 73 || keyCode === 74 || keyCode === 67)) {
+            e.preventDefault();
+            e.stopPropagation();
+            triggerToast('Inspect Element is disabled.');
+            return false;
+        }
+
+        // Ctrl/Cmd + U (View Source)
+        if (ctrlOrCmd && (key === 'u' || keyCode === 85)) {
+            e.preventDefault();
+            e.stopPropagation();
+            triggerToast('View Source is disabled.');
+            return false;
+        }
+
+        // Ctrl/Cmd + S (Save Page)
+        if (ctrlOrCmd && (key === 's' || keyCode === 83)) {
+            e.preventDefault();
+            e.stopPropagation();
+            triggerToast('Page saving is disabled.');
+            return false;
+        }
+    }, true);
+
+    // 3. Prevent dragging images to desktop or new tab
+    document.addEventListener('dragstart', (e) => {
+        if (e.target && e.target.nodeName === 'IMG') {
+            e.preventDefault();
+            return false;
+        }
+    });
 }
