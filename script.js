@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCertificateCopy();
     initCopyEmail();
     initGitHubStats();
-    initInspectProtection();
+    initConsoleGreeting();
 });
 
 /* ==========================================================================
@@ -452,61 +452,47 @@ async function initGitHubStats() {
 }
 
 /* ==========================================================================
-   11. INSPECT & SOURCE PROTECTION
+   11. DEVELOPER CONSOLE GREETING
+   Visitors who open DevTools get a friendly hello and a tiny API instead of
+   being blocked.
    ========================================================================== */
-function initInspectProtection() {
-    // 1. Prevent Right-Click Context Menu
-    document.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        triggerToast('Right-click inspection is disabled.');
-        return false;
-    });
+function initConsoleGreeting() {
+    const EMAIL = 'macaraigdrew99@gmail.com';
 
-    // 2. Prevent DevTools & Source Keyboard Shortcuts
-    window.addEventListener('keydown', (e) => {
-        const isMac = navigator.platform && navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-        const ctrlOrCmd = isMac ? e.metaKey : e.ctrlKey;
-        const key = (e.key || '').toLowerCase();
-        const keyCode = e.keyCode || e.which;
+    console.log(
+        '%c Drew Macaraig %c Full-Stack Developer ',
+        'background:#6366f1;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px 0 0 4px;',
+        'background:#0f172a;color:#a5b4fc;padding:4px 8px;border-radius:0 4px 4px 0;'
+    );
+    console.log(
+        '%cPoking around under the hood? Good. No frameworks here: semantic HTML, vanilla CSS, and plain JavaScript.\n' +
+        'Try: drew.help()',
+        'color:#94a3b8;font-size:12px;line-height:1.6;'
+    );
 
-        // F12 key
-        if (key === 'f12' || keyCode === 123) {
-            e.preventDefault();
-            e.stopPropagation();
-            triggerToast('Developer Tools access is disabled.');
-            return false;
-        }
-
-        // Ctrl/Cmd + Shift + I (Inspect), J (Console), C (Element Picker)
-        if (ctrlOrCmd && e.shiftKey && (key === 'i' || key === 'j' || key === 'c' || keyCode === 73 || keyCode === 74 || keyCode === 67)) {
-            e.preventDefault();
-            e.stopPropagation();
-            triggerToast('Inspect Element is disabled.');
-            return false;
-        }
-
-        // Ctrl/Cmd + U (View Source)
-        if (ctrlOrCmd && (key === 'u' || keyCode === 85)) {
-            e.preventDefault();
-            e.stopPropagation();
-            triggerToast('View Source is disabled.');
-            return false;
-        }
-
-        // Ctrl/Cmd + S (Save Page)
-        if (ctrlOrCmd && (key === 's' || keyCode === 83)) {
-            e.preventDefault();
-            e.stopPropagation();
-            triggerToast('Page saving is disabled.');
-            return false;
-        }
-    }, true);
-
-    // 3. Prevent dragging images to desktop or new tab
-    document.addEventListener('dragstart', (e) => {
-        if (e.target && e.target.nodeName === 'IMG') {
-            e.preventDefault();
-            return false;
+    window.drew = Object.freeze({
+        help() {
+            console.table({
+                'drew.skills()': 'List the core stack',
+                'drew.projects()': 'Scroll to featured projects',
+                'drew.contact()': 'Open an email to Drew',
+                'drew.hire()': 'You know what this does'
+            });
+        },
+        skills() {
+            return ['PHP 8+', 'Laravel', 'Livewire', 'JavaScript', 'React', 'MySQL', 'SQLite', 'Tailwind CSS', 'Node.js', 'Git'];
+        },
+        projects() {
+            document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+            return 'Scrolling to projects...';
+        },
+        contact() {
+            window.location.href = `mailto:${EMAIL}`;
+            return `Opening mail to ${EMAIL}`;
+        },
+        hire() {
+            if (typeof window.__celebrate === 'function') window.__celebrate();
+            return `Excellent choice. Reach Drew at ${EMAIL}`;
         }
     });
 }

@@ -3,19 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drew Macaraig | Full-Stack Software Developer</title>
-    <meta name="description" content="Portfolio of Drew Macaraig - Full-Stack Software Developer specializing in PHP, Laravel, JavaScript, React, and modern scalable web applications.">
+    <title>Drew Macaraig | Full-Stack Developer (PHP, Laravel, React)</title>
+    <meta name="description" content="Drew Macaraig is a full-stack software developer from the Philippines building secure PHP, Laravel, and React web apps. See live projects and verified certifications.">
     <meta name="keywords" content="Drew Macaraig, Software Developer, Full-Stack Developer, PHP, Laravel, React, JavaScript, Portfolio">
     <meta name="author" content="Drew Macaraig">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0e17">
     
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Drew Macaraig Portfolio">
+    <meta property="og:locale" content="en_US">
     <meta property="og:title" content="Drew Macaraig | Full-Stack Software Developer">
     <meta property="og:description" content="Crafting scalable web systems, clean architectures, and intuitive modern interfaces.">
-    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Drew Macaraig | Full-Stack Software Developer">
+    <meta name="twitter:description" content="Secure PHP, Laravel, and React web apps with live production deployments.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Drew Marion F. Macaraig",
+        "alternateName": "Drew Macaraig",
+        "jobTitle": "Full-Stack Software Developer",
+        "email": "mailto:macaraigdrew99@gmail.com",
+        "address": { "@type": "PostalAddress", "addressCountry": "PH" },
+        "sameAs": ["https://github.com/drewmacaraig84-arch"],
+        "knowsAbout": ["PHP", "Laravel", "Livewire", "JavaScript", "React", "MySQL", "Tailwind CSS", "Web Security", "Data Science"],
+        "hasCredential": [
+            { "@type": "EducationalOccupationalCredential", "name": "Certified Data Science Professional (CDSP)", "credentialCategory": "certificate" },
+            { "@type": "EducationalOccupationalCredential", "name": "Programming (Java) NC III", "credentialCategory": "National Certificate", "recognizedBy": { "@type": "Organization", "name": "TESDA" } },
+            { "@type": "EducationalOccupationalCredential", "name": "JavaScript Essentials 1", "credentialCategory": "certificate", "recognizedBy": { "@type": "Organization", "name": "Cisco Networking Academy" } },
+            { "@type": "EducationalOccupationalCredential", "name": "JavaScript for Beginners", "credentialCategory": "certificate", "recognizedBy": { "@type": "Organization", "name": "Simplilearn SkillUp" } },
+            { "@type": "EducationalOccupationalCredential", "name": "Introduction to SQL", "credentialCategory": "certificate", "recognizedBy": { "@type": "Organization", "name": "Simplilearn SkillUp" } }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="interactive.css">
 </head>
 <body>
     <div class="bg-grid-pattern" aria-hidden="true"></div>
+    <div class="cursor-spotlight" aria-hidden="true"></div>
 
     <!-- ==========================================================================
          FLOATING NAVBAR & NAVIGATION
@@ -37,7 +70,18 @@
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
 
+            <div class="nav-clock-pill" id="nav-clock-pill" title="Local time in Philippines (GMT+8)">
+                <span class="clock-live-indicator"></span>
+                <span id="nav-clock-text">PH --:--</span>
+            </div>
+
             <div class="nav-actions">
+                <button type="button" class="cmdk-trigger" id="cmdk-trigger" aria-label="Open command palette" aria-keyshortcuts="Control+K Meta+K">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <span class="cmdk-trigger-label">Search</span>
+                    <kbd class="cmdk-trigger-kbd">Ctrl K</kbd>
+                </button>
+
                 <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark/light theme">
                     <svg class="sun-icon" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4"></circle>
@@ -70,9 +114,10 @@
 
     <main>
         <!-- ==========================================================================
-             HERO SECTION
+             HERO SECTION WITH 3D WEBGL ENGINE
              ========================================================================== -->
         <section id="home" class="hero container">
+            <div id="hero-3d-wrapper" class="hero-3d-wrapper" aria-label="Interactive 3D WebGL Canvas" title="Click and drag to spin the 3D core"></div>
             <div class="hero-grid">
                 <div class="hero-content reveal-item">
                     <div class="availability-pill">
@@ -81,7 +126,7 @@
                     </div>
 
                     <h1 class="hero-title">
-                        Building Scalable Web Systems & <span class="gradient-text">Modern Experiences</span>
+                        Building Scalable Web Systems & <span class="gradient-text gradient-text-3d">Modern Experiences</span>
                     </h1>
 
                     <p class="hero-description">
@@ -99,6 +144,10 @@
                         <a href="#contact" class="btn btn-secondary">
                             <span>Get in Touch</span>
                         </a>
+                        <button type="button" class="btn btn-glass-3d" id="btn-spin-3d" title="Spin 3D WebGL Core">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                            <span>Spin 3D Core</span>
+                        </button>
                     </div>
 
                     <div class="hero-socials">
@@ -117,17 +166,23 @@
                     </div>
                 </div>
 
-                <div class="terminal-card reveal-item" aria-hidden="true">
+                <div class="terminal-card reveal-item" id="hero-terminal">
                     <div class="terminal-header">
-                        <div class="terminal-dots">
+                        <div class="terminal-dots" aria-hidden="true">
                             <span class="terminal-dot dot-red"></span>
                             <span class="terminal-dot dot-yellow"></span>
                             <span class="terminal-dot dot-green"></span>
                         </div>
-                        <span class="terminal-title">drew-developer-profile.ts</span>
-                        <span></span>
+                        <div class="terminal-tabs" role="tablist" aria-label="Terminal views">
+                            <button type="button" class="terminal-tab active" role="tab" id="tab-profile" data-pane="profile" aria-selected="true" aria-controls="pane-profile">profile.ts</button>
+                            <button type="button" class="terminal-tab" role="tab" id="tab-shell" data-pane="shell" aria-selected="false" aria-controls="pane-shell" tabindex="-1">
+                                <span>shell</span>
+                                <span class="terminal-tab-ping" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="terminal-body">
+                    <div class="terminal-panes">
+                    <div class="terminal-body terminal-pane active" id="pane-profile" data-pane="profile" role="tabpanel" aria-labelledby="tab-profile">
                         <p><span class="code-comment">// Developer Persona & Architecture Stack</span></p>
                         <p><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {</p>
                         <p>&nbsp;&nbsp;<span class="code-property">name:</span> <span class="code-string">'Drew Macaraig'</span>,</p>
@@ -138,7 +193,7 @@
                         <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'React'</span>, <span class="code-string">'MySQL'</span>, <span class="code-string">'Tailwind CSS'</span></p>
                         <p>&nbsp;&nbsp;],</p>
                         <p>&nbsp;&nbsp;<span class="code-property">specialty:</span> <span class="code-string">'Scalable Web Apps & Security'</span>,</p>
-                        <p>&nbsp;&nbsp;<span class="code-property">status:</span> <span class="code-string">'Ready to Deploy 🚀'</span></p>
+                        <p>&nbsp;&nbsp;<span class="code-property">status:</span> <span class="code-string">'Ready to ship'</span></p>
                         <p>};</p>
 
                         <div class="terminal-stats-grid">
@@ -151,6 +206,26 @@
                                 <div class="terminal-stat-value">CSRF & RBAC</div>
                             </div>
                         </div>
+
+                        <button type="button" class="terminal-cta" id="terminal-open-shell">
+                            <span class="terminal-cta-caret" aria-hidden="true">&gt;_</span>
+                            <span>Open the shell and type <kbd>help</kbd></span>
+                        </button>
+                    </div>
+
+                    <div class="terminal-body terminal-pane shell-pane" id="pane-shell" data-pane="shell" role="tabpanel" aria-labelledby="tab-shell" aria-hidden="true" inert>
+                        <div class="shell-output" id="shell-output" role="log" aria-live="polite"></div>
+                        <form class="shell-input-row" id="shell-form" autocomplete="off">
+                            <label for="shell-input" class="shell-prompt">drew@portfolio:~$</label>
+                            <input id="shell-input" class="shell-input" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" enterkeyhint="send">
+                        </form>
+                        <div class="shell-chips" aria-label="Quick commands">
+                            <button type="button" class="shell-chip" data-cmd="help">help</button>
+                            <button type="button" class="shell-chip" data-cmd="projects">projects</button>
+                            <button type="button" class="shell-chip" data-cmd="skills">skills</button>
+                            <button type="button" class="shell-chip" data-cmd="hire">hire</button>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -418,6 +493,17 @@
             <div class="projects-grid" id="projects-container">
                 <div class="project-card reveal-item">
                     <div class="project-card-header">
+                        <div class="browser-mockup-bar" aria-hidden="true">
+                            <div class="browser-dots">
+                                <span class="b-dot red"></span>
+                                <span class="b-dot yellow"></span>
+                                <span class="b-dot green"></span>
+                            </div>
+                            <div class="browser-url-chip">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <span>dwcc-scj.site.je</span>
+                            </div>
+                        </div>
                         <a href="http://dwcc-scj.site.je/index.php" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit School of Criminal Justice Live System">
                             <span class="project-img-overlay-btn">
                                 <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -451,7 +537,7 @@
                                 </a>
                             </div>
                             <div class="project-stats-meta">
-                                <span>⭐ Live System</span>
+                                <span>Live system</span>
                             </div>
                         </div>
                     </div>
@@ -459,6 +545,17 @@
 
                 <div class="project-card reveal-item">
                     <div class="project-card-header">
+                        <div class="browser-mockup-bar" aria-hidden="true">
+                            <div class="browser-dots">
+                                <span class="b-dot red"></span>
+                                <span class="b-dot yellow"></span>
+                                <span class="b-dot green"></span>
+                            </div>
+                            <div class="browser-url-chip">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <span>amigagracia.com</span>
+                            </div>
+                        </div>
                         <a href="https://www.amigagracia.com/" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit Amiga Gracia Travel Services Live Website">
                             <span class="project-img-overlay-btn">
                                 <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -492,7 +589,7 @@
                                 </a>
                             </div>
                             <div class="project-stats-meta">
-                                <span>✈️ Live Portal</span>
+                                <span>Live portal</span>
                             </div>
                         </div>
                     </div>
@@ -500,6 +597,17 @@
 
                 <div class="project-card reveal-item">
                     <div class="project-card-header">
+                        <div class="browser-mockup-bar" aria-hidden="true">
+                            <div class="browser-dots">
+                                <span class="b-dot red"></span>
+                                <span class="b-dot yellow"></span>
+                                <span class="b-dot green"></span>
+                            </div>
+                            <div class="browser-url-chip">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <span>uap-mindoro.railway.app</span>
+                            </div>
+                        </div>
                         <a href="https://uap-mindorochapter.up.railway.app/" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit UAP Mindoro Chapter Live Portal">
                             <span class="project-img-overlay-btn">
                                 <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -533,7 +641,7 @@
                                 </a>
                             </div>
                             <div class="project-stats-meta">
-                                <span>🏛️ Live Portal</span>
+                                <span>Live portal</span>
                             </div>
                         </div>
                     </div>
@@ -1111,6 +1219,25 @@
     </div>
 
     <!-- ==========================================================================
+         COMMAND PALETTE (CTRL/CMD + K)
+         ========================================================================== -->
+    <div class="cmdk-backdrop" id="cmdk" hidden>
+        <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command palette">
+            <div class="cmdk-search">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input id="cmdk-input" class="cmdk-input" type="text" role="combobox" aria-expanded="true" aria-controls="cmdk-list" aria-autocomplete="list" aria-label="Search sections, projects, and actions" placeholder="Jump to a section, project, or action" autocomplete="off" spellcheck="false">
+                <kbd class="cmdk-esc">Esc</kbd>
+            </div>
+            <ul class="cmdk-list" id="cmdk-list" role="listbox" aria-label="Results"></ul>
+            <div class="cmdk-footer" aria-hidden="true">
+                <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> move</span>
+                <span><kbd>Enter</kbd> select</span>
+                <span><kbd>Esc</kbd> close</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
          TOAST NOTIFICATION COMPONENT
          ========================================================================== -->
     <div class="toast-notice" id="toast-notice" role="status" aria-live="polite">
@@ -1118,6 +1245,9 @@
         <span>Email copied to clipboard!</span>
     </div>
 
+    <script src="assets/js/three.min.js"></script>
+    <script src="assets/js/three-scene.js"></script>
     <script src="script.js"></script>
+    <script src="interactive.js"></script>
 </body>
 </html>
