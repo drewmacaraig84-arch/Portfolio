@@ -1,21 +1,24 @@
-/* ==========================================================================
-   PORTFOLIO SCRIPTS - DREW MACARAIG
-   ========================================================================== */
+/**
+ * Portfolio Interactive Scripts
+ * Standards: UI/UX Pro Max Motion & Accessibility
+ * Author: Drew Macaraig
+ */
 
-/* ==========================================================================
-   INITIALIZATION
-   ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initNavbar();
+    initSoundEffects();
     initScrollReveal();
+    initArchitecturePipeline();
     initSkillFilters();
+    initSkillsSearch();
     initCertificateFilters();
+    initCertsSearch();
     initCertificateModal();
     initCertificateCopy();
+    initProjectSpecsAccordion();
     initCopyEmail();
     initGitHubStats();
-    initConsoleGreeting();
 });
 
 /* ==========================================================================
@@ -25,10 +28,11 @@ function initTheme() {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const root = document.documentElement;
 
+    // Check saved theme or system preference
     const savedTheme = localStorage.getItem('drew_portfolio_theme');
     const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    const initialTheme = savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'dark');
+    const initialTheme = savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'dark'); // Default to sleek dark mode
     root.setAttribute('data-theme', initialTheme);
 
     if (themeToggleBtn) {
@@ -54,6 +58,7 @@ function initNavbar() {
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
     const sections = document.querySelectorAll('section[id]');
 
+    // Navbar shadow on scroll
     window.addEventListener('scroll', () => {
         if (window.scrollY > 30) {
             navbar.classList.add('scrolled');
@@ -62,6 +67,7 @@ function initNavbar() {
         }
     }, { passive: true });
 
+    // Mobile drawer toggle
     function toggleMobileMenu(open) {
         const isOpen = open !== undefined ? open : !hamburgerBtn.classList.contains('open');
         hamburgerBtn.classList.toggle('open', isOpen);
@@ -82,6 +88,7 @@ function initNavbar() {
         link.addEventListener('click', () => toggleMobileMenu(false));
     });
 
+    // Scrollspy for active link indicator
     const observerOptions = {
         root: null,
         rootMargin: '-20% 0px -70% 0px',
@@ -114,6 +121,7 @@ function initScrollReveal() {
     const revealItems = document.querySelectorAll('.reveal-item');
     if (!revealItems.length) return;
 
+    // Respect prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
         revealItems.forEach(item => item.classList.add('revealed'));
@@ -123,6 +131,7 @@ function initScrollReveal() {
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry, idx) => {
             if (entry.isIntersecting) {
+                // Subtle stagger
                 setTimeout(() => {
                     entry.target.classList.add('revealed');
                 }, idx * 30);
@@ -136,6 +145,7 @@ function initScrollReveal() {
 
     revealItems.forEach(item => revealObserver.observe(item));
 
+    // Reveal section items if page loaded with a hash or on nav click
     function revealTargetSection() {
         if (window.location.hash) {
             const targetSec = document.querySelector(window.location.hash);
@@ -194,9 +204,7 @@ function initSkillFilters() {
     });
 }
 
-/* ==========================================================================
-   5. TOAST NOTIFICATIONS
-   ========================================================================== */
+/* Toast notification helper */
 function triggerToast(message) {
     const toast = document.getElementById('toast-notice');
     if (!toast) return;
@@ -212,7 +220,7 @@ function triggerToast(message) {
 }
 
 /* ==========================================================================
-   6. CERTIFICATION & BADGE FILTERABLE TABS
+   5. CERTIFICATION & BADGE FILTERABLE TABS
    ========================================================================== */
 function initCertificateFilters() {
     const filterButtons = document.querySelectorAll('.cert-filter-btn');
@@ -251,7 +259,7 @@ function initCertificateFilters() {
 }
 
 /* ==========================================================================
-   7. CERTIFICATE LIGHTBOX MODAL & PREVIEW
+   6. CERTIFICATE LIGHTBOX MODAL & PREVIEW
    ========================================================================== */
 function initCertificateModal() {
     const modalBackdrop = document.getElementById('cert-modal');
@@ -307,6 +315,7 @@ function initCertificateModal() {
         document.body.style.overflow = '';
     }
 
+    // Modal copy code button
     if (modalCopyBtn) {
         modalCopyBtn.addEventListener('click', async () => {
             if (!currentCertCode) return;
@@ -321,6 +330,7 @@ function initCertificateModal() {
         });
     }
 
+    // Bind triggers on all cards
     document.querySelectorAll('[data-cert-target]').forEach(trigger => {
         trigger.addEventListener('click', (e) => {
             e.preventDefault();
@@ -359,7 +369,7 @@ function initCertificateModal() {
 }
 
 /* ==========================================================================
-   8. CREDENTIAL CODE CLIPBOARD COPY
+   7. CREDENTIAL CODE CLIPBOARD COPY
    ========================================================================== */
 function initCertificateCopy() {
     const copyButtons = document.querySelectorAll('.cert-copy-btn');
@@ -389,7 +399,7 @@ function initCertificateCopy() {
 }
 
 /* ==========================================================================
-   9. INTERACTIVE EMAIL CLIPBOARD COPY
+   8. INTERACTIVE EMAIL CLIPBOARD COPY
    ========================================================================== */
 function initCopyEmail() {
     const copyBtn = document.getElementById('copy-email-btn');
@@ -402,6 +412,7 @@ function initCopyEmail() {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 await navigator.clipboard.writeText(emailToCopy);
             } else {
+                // Fallback for older browsers
                 const tempInput = document.createElement('input');
                 tempInput.value = emailToCopy;
                 document.body.appendChild(tempInput);
@@ -419,7 +430,201 @@ function initCopyEmail() {
 }
 
 /* ==========================================================================
-   10. GITHUB REPOSITORIES LIVE STATUS (NON-BLOCKING)
+   SOUND EFFECTS SYNTHESIZER (WEB AUDIO API)
+   ========================================================================== */
+let audioCtx = null;
+let soundEnabled = localStorage.getItem('drew_portfolio_sound') !== 'muted';
+
+function playUIAudio(freq = 600, duration = 0.05, type = 'sine') {
+    if (!soundEnabled) return;
+    try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 0.45, audioCtx.currentTime + duration);
+        gain.gain.setValueAtTime(0.035, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    } catch (_) {}
+}
+
+window.playUIAudio = playUIAudio;
+
+function initSoundEffects() {
+    const soundToggle = document.getElementById('sound-toggle');
+    if (!soundToggle) return;
+
+    if (!soundEnabled) {
+        soundToggle.classList.add('muted');
+        soundToggle.setAttribute('aria-pressed', 'false');
+    } else {
+        soundToggle.setAttribute('aria-pressed', 'true');
+    }
+
+    soundToggle.addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        localStorage.setItem('drew_portfolio_sound', soundEnabled ? 'active' : 'muted');
+        soundToggle.classList.toggle('muted', !soundEnabled);
+        soundToggle.setAttribute('aria-pressed', String(soundEnabled));
+        if (soundEnabled) {
+            playUIAudio(750, 0.08, 'triangle');
+            triggerToast('UI Audio effects enabled');
+        } else {
+            triggerToast('UI Audio effects muted');
+        }
+    });
+
+    // Tactile sound on interactive buttons and tabs
+    document.querySelectorAll('.btn, .filter-btn, .cert-filter-btn, .terminal-tab, .shell-chip').forEach(el => {
+        el.addEventListener('click', () => playUIAudio(580, 0.04));
+    });
+}
+
+/* ==========================================================================
+   INTERACTIVE ARCHITECTURE PIPELINE (BENTO GRID 2.0)
+   ========================================================================== */
+function initArchitecturePipeline() {
+    const pipeline = document.getElementById('arch-pipeline');
+    const titleEl = document.getElementById('arch-detail-title');
+    const descEl = document.getElementById('arch-detail-desc');
+    if (!pipeline || !titleEl || !descEl) return;
+
+    const ARCH_DATA = {
+        client: {
+            title: '01 · Client Layer (Reactive & Accessible)',
+            desc: 'Crafted with semantic HTML5, reactive Livewire/React components, zero bloat, and sub-100ms client rendering for responsive multi-device engagement.'
+        },
+        security: {
+            title: '02 · Security & RBAC Defense',
+            desc: 'Strict CSRF token validation on all mutating routes, rate-limiting handlers, session rotation, and multi-tier Role-Based Access Control (Admin, Faculty, Student, Member).'
+        },
+        engine: {
+            title: '03 · Core Application Engine',
+            desc: 'Built with PHP 8.3 & Laravel with modular service repositories, clean controller abstractions, transactional integrity, and automated background jobs.'
+        },
+        data: {
+            title: '04 · Database & Cache Architecture',
+            desc: 'Dual database architecture (MySQL in production, SQLite for isolated testing) with indexed queries achieving <80ms latency and normalized schemas.'
+        }
+    };
+
+    const nodes = pipeline.querySelectorAll('.arch-node');
+    nodes.forEach(node => {
+        node.addEventListener('click', () => {
+            const key = node.dataset.arch;
+            if (!key || !ARCH_DATA[key]) return;
+
+            nodes.forEach(n => {
+                const isActive = n === node;
+                n.classList.toggle('active', isActive);
+                n.setAttribute('aria-selected', String(isActive));
+            });
+
+            titleEl.innerHTML = `
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                <span>${ARCH_DATA[key].title}</span>
+            `;
+            descEl.textContent = ARCH_DATA[key].desc;
+            playUIAudio(650, 0.05, 'triangle');
+        });
+    });
+}
+
+/* ==========================================================================
+   SKILLS LIVE SEARCH FILTER
+   ========================================================================== */
+function initSkillsSearch() {
+    const searchInput = document.getElementById('skills-search');
+    const clearBtn = document.getElementById('skills-search-clear');
+    const skillCards = document.querySelectorAll('#skills-grid .skill-card');
+    if (!searchInput || !skillCards.length) return;
+
+    function applySearch() {
+        const query = searchInput.value.trim().toLowerCase();
+        if (clearBtn) clearBtn.hidden = !query;
+
+        skillCards.forEach(card => {
+            const name = card.querySelector('.skill-name')?.textContent.toLowerCase() || '';
+            const category = card.querySelector('.skill-category')?.textContent.toLowerCase() || '';
+            const matches = !query || name.includes(query) || category.includes(query);
+            card.hidden = !matches;
+        });
+    }
+
+    searchInput.addEventListener('input', applySearch);
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            applySearch();
+            searchInput.focus();
+            playUIAudio(400, 0.04);
+        });
+    }
+}
+
+/* ==========================================================================
+   CERTIFICATES LIVE SEARCH FILTER
+   ========================================================================== */
+function initCertsSearch() {
+    const searchInput = document.getElementById('certs-search');
+    const clearBtn = document.getElementById('certs-search-clear');
+    const certCards = document.querySelectorAll('#certs-container .cert-card');
+    if (!searchInput || !certCards.length) return;
+
+    function applySearch() {
+        const query = searchInput.value.trim().toLowerCase();
+        if (clearBtn) clearBtn.hidden = !query;
+
+        certCards.forEach(card => {
+            const title = (card.dataset.title || '').toLowerCase();
+            const issuer = (card.dataset.issuer || '').toLowerCase();
+            const code = (card.dataset.code || '').toLowerCase();
+            const skills = (card.dataset.skills || '').toLowerCase();
+            const matches = !query || title.includes(query) || issuer.includes(query) || code.includes(query) || skills.includes(query);
+            card.hidden = !matches;
+        });
+    }
+
+    searchInput.addEventListener('input', applySearch);
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            applySearch();
+            searchInput.focus();
+            playUIAudio(400, 0.04);
+        });
+    }
+}
+
+/* ==========================================================================
+   PROJECT TECHNICAL ARCHITECTURE ACCORDION
+   ========================================================================== */
+function initProjectSpecsAccordion() {
+    const toggles = document.querySelectorAll('.project-specs-toggle');
+    toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const panelId = toggle.getAttribute('aria-controls');
+            const panel = panelId ? document.getElementById(panelId) : null;
+            if (!panel) return;
+
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!isExpanded));
+            panel.hidden = isExpanded;
+            playUIAudio(isExpanded ? 480 : 640, 0.04);
+        });
+    });
+}
+
+/* ==========================================================================
+   6. GITHUB REPOSITORIES LIVE STATUS CHECK (NON-BLOCKING)
    ========================================================================== */
 async function initGitHubStats() {
     const GITHUB_USERNAME = 'drewmacaraig84-arch';
@@ -434,6 +639,7 @@ async function initGitHubStats() {
         const repos = await response.json();
         if (!Array.isArray(repos) || repos.length === 0) return;
 
+        // Map live stargazers/stats if applicable
         repos.forEach(repo => {
             const cardLinks = document.querySelectorAll(`a[href*="${repo.name}"]`);
             cardLinks.forEach(link => {
@@ -447,52 +653,7 @@ async function initGitHubStats() {
             });
         });
     } catch (e) {
+        // Silent graceful fallback, curated projects remain perfectly visible
         console.info('GitHub live stats loaded in offline/curated mode.');
     }
-}
-
-/* ==========================================================================
-   11. DEVELOPER CONSOLE GREETING
-   Visitors who open DevTools get a friendly hello and a tiny API instead of
-   being blocked.
-   ========================================================================== */
-function initConsoleGreeting() {
-    const EMAIL = 'macaraigdrew99@gmail.com';
-
-    console.log(
-        '%c Drew Macaraig %c Full-Stack Developer ',
-        'background:#6366f1;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px 0 0 4px;',
-        'background:#0f172a;color:#a5b4fc;padding:4px 8px;border-radius:0 4px 4px 0;'
-    );
-    console.log(
-        '%cPoking around under the hood? Good. No frameworks here: semantic HTML, vanilla CSS, and plain JavaScript.\n' +
-        'Try: drew.help()',
-        'color:#94a3b8;font-size:12px;line-height:1.6;'
-    );
-
-    window.drew = Object.freeze({
-        help() {
-            console.table({
-                'drew.skills()': 'List the core stack',
-                'drew.projects()': 'Scroll to featured projects',
-                'drew.contact()': 'Open an email to Drew',
-                'drew.hire()': 'You know what this does'
-            });
-        },
-        skills() {
-            return ['PHP 8+', 'Laravel', 'Livewire', 'JavaScript', 'React', 'MySQL', 'SQLite', 'Tailwind CSS', 'Node.js', 'Git'];
-        },
-        projects() {
-            document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-            return 'Scrolling to projects...';
-        },
-        contact() {
-            window.location.href = `mailto:${EMAIL}`;
-            return `Opening mail to ${EMAIL}`;
-        },
-        hire() {
-            if (typeof window.__celebrate === 'function') window.__celebrate();
-            return `Excellent choice. Reach Drew at ${EMAIL}`;
-        }
-    });
 }

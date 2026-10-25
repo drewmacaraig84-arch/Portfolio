@@ -424,6 +424,21 @@
                 hidden: true,
                 run() { return commands.spin.run(); }
             },
+            arch: {
+                desc: 'View architecture pipeline',
+                run() {
+                    activate('arch', false);
+                    line([['Switched terminal deck to architecture.sys', 'sh-ok']]);
+                }
+            },
+            audio: {
+                desc: 'Toggle UI sound effects',
+                run() {
+                    const soundBtn = document.getElementById('sound-toggle');
+                    if (soundBtn) soundBtn.click();
+                    line([['Audio state toggled.', 'sh-ok']]);
+                }
+            },
             exit: {
                 desc: 'Back to profile.ts',
                 run() { activate('profile', true); }
@@ -609,7 +624,6 @@
 
             PROJECTS.forEach(p => {
                 items.push({ group: 'Projects', label: `Open ${p.name}`, hint: 'Live demo', icon: 'live', keywords: `${p.key} ${p.stack}`, run: () => openExternal(p.live) });
-                items.push({ group: 'Projects', label: `Source: ${p.name}`, hint: 'GitHub', icon: 'code', keywords: `${p.key} repo code`, run: () => openExternal(p.repo) });
             });
 
             getCertificates().forEach(c => {
@@ -767,10 +781,10 @@
     (() => {
         if (prefersReducedMotion || !finePointer) return;
 
-        document.querySelectorAll('.project-card, .cert-card, .badge-item').forEach(card => {
+        document.querySelectorAll('.project-showcase-card, .project-card, .cert-card, .badge-item').forEach(card => {
             const holo = card.matches('.cert-card, .badge-item');
-            const maxTilt = card.matches('.badge-item') ? 9 : 6;
-            const lift = card.matches('.badge-item') ? -3 : -6;
+            const maxTilt = card.matches('.badge-item') ? 9 : (card.matches('.project-showcase-card') ? 2 : 6);
+            const lift = card.matches('.badge-item') ? -3 : (card.matches('.project-showcase-card') ? -3 : -6);
 
             const glare = document.createElement('span');
             glare.className = holo ? 'tilt-glare tilt-glare--holo' : 'tilt-glare';
@@ -925,17 +939,24 @@
             setInterval(updateClock, 1000);
         }
 
-        // 2. Spin 3D Button in Hero
-        const spinBtn = document.getElementById('btn-spin-3d');
-        if (spinBtn) {
-            spinBtn.addEventListener('click', () => {
-                if (window.__hero3D) {
-                    window.__hero3D.spinRapid();
-                    window.__hero3D.pulseCore();
-                    toast('3D Cyber Core Accelerated!');
-                }
-            });
-        }
+        // 2. Spin 3D Buttons in Hero
+        ['btn-spin-3d', 'btn-stage-spin'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    if (window.__hero3D && typeof window.__hero3D.spinRapid === 'function') {
+                        window.__hero3D.spinRapid();
+                        if (typeof window.__hero3D.pulseCore === 'function') {
+                            window.__hero3D.pulseCore();
+                        }
+                        if (typeof window.playUIAudio === 'function') {
+                            window.playUIAudio(880, 0.08);
+                        }
+                        toast('3D Model Accelerated');
+                    }
+                });
+            }
+        });
     })();
 })();
 

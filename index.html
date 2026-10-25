@@ -42,7 +42,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="interactive.css">
 </head>
@@ -57,32 +57,42 @@
         <nav class="navbar" id="navbar" aria-label="Main Navigation">
             <a href="#home" class="logo" aria-label="Drew Macaraig Homepage">
                 <span class="logo-badge">D</span>
-                <span>DREW<span class="gradient-text">.</span></span>
+                <span class="logo-name">Drew Macaraig</span>
             </a>
 
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#projects" class="nav-link">Work</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#certificates" class="nav-link">Certifications</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#certificates" class="nav-link">Credentials</a></li>
+                <li><a href="#experience" class="nav-link">Timeline</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
 
-            <div class="nav-clock-pill" id="nav-clock-pill" title="Local time in Philippines (GMT+8)">
-                <span class="clock-live-indicator"></span>
-                <span id="nav-clock-text">PH --:--</span>
-            </div>
-
             <div class="nav-actions">
-                <button type="button" class="cmdk-trigger" id="cmdk-trigger" aria-label="Open command palette" aria-keyshortcuts="Control+K Meta+K">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <span class="cmdk-trigger-label">Search</span>
-                    <kbd class="cmdk-trigger-kbd">Ctrl K</kbd>
+                <div class="nav-status-badge" title="Status: Available for projects & roles">
+                    <span class="pulse-dot"></span>
+                    <span class="nav-status-text">Available</span>
+                </div>
+
+                <button type="button" class="sound-toggle-btn" id="sound-toggle" aria-label="Toggle UI Audio Experience" title="Toggle audio sound effects">
+                    <svg class="sound-on-icon" viewBox="0 0 24 24">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <svg class="sound-off-icon" viewBox="0 0 24 24">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
                 </button>
 
-                <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark/light theme">
+                <button type="button" class="cmdk-trigger" id="cmdk-trigger" aria-label="Open command palette" aria-keyshortcuts="Control+K Meta+K" title="Search (Ctrl + K)">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <kbd class="cmdk-trigger-kbd">⌘K</kbd>
+                </button>
+
+                <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
                     <svg class="sun-icon" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4"></circle>
                         <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
@@ -104,38 +114,40 @@
     <div class="mobile-nav-overlay" id="mobile-overlay" aria-hidden="true"></div>
     <div class="mobile-nav-panel" id="mobile-panel" aria-label="Mobile Navigation">
         <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#projects" class="mobile-nav-link">Work</a>
         <a href="#about" class="mobile-nav-link">About</a>
         <a href="#skills" class="mobile-nav-link">Skills</a>
-        <a href="#projects" class="mobile-nav-link">Projects</a>
-        <a href="#certificates" class="mobile-nav-link">Certifications</a>
-        <a href="#experience" class="mobile-nav-link">Experience</a>
+        <a href="#certificates" class="mobile-nav-link">Credentials</a>
+        <a href="#experience" class="mobile-nav-link">Timeline</a>
         <a href="#contact" class="mobile-nav-link">Contact</a>
     </div>
 
     <main>
         <!-- ==========================================================================
-             HERO SECTION WITH 3D WEBGL ENGINE
+             HERO SECTION: 3D INTERACTIVE WEBGL BACKGROUND + EDITORIAL MINIMALISM
              ========================================================================== -->
-        <section id="home" class="hero container">
-            <div id="hero-3d-wrapper" class="hero-3d-wrapper" aria-label="Interactive 3D WebGL Canvas" title="Click and drag to spin the 3D core"></div>
-            <div class="hero-grid">
+        <section id="home" class="hero section-hero">
+            <div id="hero-3d-wrapper" class="hero-3d-canvas-bg" aria-hidden="true" title="Click & drag background to rotate 3D core"></div>
+            <div class="hero-radial-glow" aria-hidden="true"></div>
+
+            <div class="container hero-container">
                 <div class="hero-content reveal-item">
                     <div class="availability-pill">
                         <span class="pulse-dot"></span>
-                        <span>Available for projects & full-time roles</span>
+                        <span>Available for Full-Stack & Creative Engineering • Remote</span>
                     </div>
 
                     <h1 class="hero-title">
-                        Building Scalable Web Systems & <span class="gradient-text gradient-text-3d">Modern Experiences</span>
+                        Crafting digital systems with <span class="gradient-text gradient-shimmer">clarity & dimension.</span>
                     </h1>
 
                     <p class="hero-description">
-                        Hello! I'm <strong>Drew Macaraig</strong>, a Software Developer specialized in building robust full-stack applications, secure backend pipelines, and clean user interfaces.
+                        Hello, I'm <strong>Drew Macaraig</strong>. A Full-Stack Developer creating scalable software architectures, sub-100ms databases, and tactile interactive 3D digital experiences.
                     </p>
 
                     <div class="hero-actions">
                         <a href="#projects" class="btn btn-primary">
-                            <span>Explore Projects</span>
+                            <span>Explore Flagship Work</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -144,88 +156,45 @@
                         <a href="#contact" class="btn btn-secondary">
                             <span>Get in Touch</span>
                         </a>
-                        <button type="button" class="btn btn-glass-3d" id="btn-spin-3d" title="Spin 3D WebGL Core">
+                    </div>
+
+                    <div class="hero-stats-row">
+                        <div class="hero-stat-item">
+                            <span class="hero-stat-val">4+</span>
+                            <span class="hero-stat-lbl">Years Crafting</span>
+                        </div>
+                        <div class="hero-stat-sep"></div>
+                        <div class="hero-stat-item">
+                            <span class="hero-stat-val">&lt;100ms</span>
+                            <span class="hero-stat-lbl">Target Latency</span>
+                        </div>
+                        <div class="hero-stat-sep"></div>
+                        <div class="hero-stat-item">
+                            <span class="hero-stat-val">100%</span>
+                            <span class="hero-stat-lbl">Ship Reliability</span>
+                        </div>
+                    </div>
+
+                    <!-- Minimalist 3D Core Interactive Toolbar -->
+                    <div class="hero-3d-toolbar" role="toolbar" aria-label="3D Background Controls">
+                        <div class="hero-3d-toolbar-badge" title="Click & drag background anywhere to rotate 3D core">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                            <span>Drag background to rotate</span>
+                        </div>
+                        <div class="hero-3d-geo-tabs" role="tablist" aria-label="3D Geometries">
+                            <button type="button" class="stage-control-btn active" data-geo="crystal" title="Prism Crystal Geometry">Crystal</button>
+                            <button type="button" class="stage-control-btn" data-geo="torus" title="Torus Loop Geometry">Torus</button>
+                            <button type="button" class="stage-control-btn" data-geo="gyro" title="Orbital Gyroscope Geometry">Orbital</button>
+                        </div>
+                        <div class="hero-3d-mat-tabs" role="group" aria-label="Shader Materials">
+                            <button type="button" class="stage-control-btn active" data-mat="glass" title="Frosted Glass Shader">Glass</button>
+                            <button type="button" class="stage-control-btn" data-mat="chrome" title="Liquid Chrome Shader">Chrome</button>
+                            <button type="button" class="stage-control-btn" data-mat="neon" title="Cyber Neon Shader">Neon</button>
+                        </div>
+                        <button type="button" class="hero-spin-btn" id="btn-spin-3d" title="Spin 3D core with momentum">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                            <span>Spin 3D Core</span>
+                            <span>Spin</span>
                         </button>
-                    </div>
-
-                    <div class="hero-socials">
-                        <span>Connect with me:</span>
-                        <a href="https://github.com/drewmacaraig84-arch" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub Profile">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                            </svg>
-                        </a>
-                        <a href="mailto:macaraigdrew99@gmail.com" class="social-icon-btn" aria-label="Send Email">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                <polyline points="22,6 12,13 2,6"></polyline>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="terminal-card reveal-item" id="hero-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots" aria-hidden="true">
-                            <span class="terminal-dot dot-red"></span>
-                            <span class="terminal-dot dot-yellow"></span>
-                            <span class="terminal-dot dot-green"></span>
-                        </div>
-                        <div class="terminal-tabs" role="tablist" aria-label="Terminal views">
-                            <button type="button" class="terminal-tab active" role="tab" id="tab-profile" data-pane="profile" aria-selected="true" aria-controls="pane-profile">profile.ts</button>
-                            <button type="button" class="terminal-tab" role="tab" id="tab-shell" data-pane="shell" aria-selected="false" aria-controls="pane-shell" tabindex="-1">
-                                <span>shell</span>
-                                <span class="terminal-tab-ping" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="terminal-panes">
-                    <div class="terminal-body terminal-pane active" id="pane-profile" data-pane="profile" role="tabpanel" aria-labelledby="tab-profile">
-                        <p><span class="code-comment">// Developer Persona & Architecture Stack</span></p>
-                        <p><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {</p>
-                        <p>&nbsp;&nbsp;<span class="code-property">name:</span> <span class="code-string">'Drew Macaraig'</span>,</p>
-                        <p>&nbsp;&nbsp;<span class="code-property">role:</span> <span class="code-string">'Full-Stack Software Developer'</span>,</p>
-                        <p>&nbsp;&nbsp;<span class="code-property">location:</span> <span class="code-string">'Philippines (GMT+8)'</span>,</p>
-                        <p>&nbsp;&nbsp;<span class="code-property">coreStack:</span> [</p>
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'PHP 8+'</span>, <span class="code-string">'Laravel'</span>, <span class="code-string">'JavaScript'</span>,</p>
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">'React'</span>, <span class="code-string">'MySQL'</span>, <span class="code-string">'Tailwind CSS'</span></p>
-                        <p>&nbsp;&nbsp;],</p>
-                        <p>&nbsp;&nbsp;<span class="code-property">specialty:</span> <span class="code-string">'Scalable Web Apps & Security'</span>,</p>
-                        <p>&nbsp;&nbsp;<span class="code-property">status:</span> <span class="code-string">'Ready to ship'</span></p>
-                        <p>};</p>
-
-                        <div class="terminal-stats-grid">
-                            <div class="terminal-stat">
-                                <div class="terminal-stat-label">Architecture</div>
-                                <div class="terminal-stat-value">Clean & Modular</div>
-                            </div>
-                            <div class="terminal-stat">
-                                <div class="terminal-stat-label">Security Focus</div>
-                                <div class="terminal-stat-value">CSRF & RBAC</div>
-                            </div>
-                        </div>
-
-                        <button type="button" class="terminal-cta" id="terminal-open-shell">
-                            <span class="terminal-cta-caret" aria-hidden="true">&gt;_</span>
-                            <span>Open the shell and type <kbd>help</kbd></span>
-                        </button>
-                    </div>
-
-                    <div class="terminal-body terminal-pane shell-pane" id="pane-shell" data-pane="shell" role="tabpanel" aria-labelledby="tab-shell" aria-hidden="true" inert>
-                        <div class="shell-output" id="shell-output" role="log" aria-live="polite"></div>
-                        <form class="shell-input-row" id="shell-form" autocomplete="off">
-                            <label for="shell-input" class="shell-prompt">drew@portfolio:~$</label>
-                            <input id="shell-input" class="shell-input" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" enterkeyhint="send">
-                        </form>
-                        <div class="shell-chips" aria-label="Quick commands">
-                            <button type="button" class="shell-chip" data-cmd="help">help</button>
-                            <button type="button" class="shell-chip" data-cmd="projects">projects</button>
-                            <button type="button" class="shell-chip" data-cmd="skills">skills</button>
-                            <button type="button" class="shell-chip" data-cmd="hire">hire</button>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -234,8 +203,9 @@
         <!-- ==========================================================================
              ABOUT SECTION - BENTO GRID HIGHLIGHTS
              ========================================================================== -->
-        <section id="about" class="container">
-            <div class="section-header reveal-item">
+        <section id="about" class="section-block section-about">
+            <div class="container">
+                <div class="section-header reveal-item">
                 <span class="section-tag">About Me</span>
                 <h2>Engineering with Purpose & Precision</h2>
                 <p class="section-subtitle">A balanced approach combining solid architectural foundations, performant data layers, and clean UI engineering.</p>
@@ -253,6 +223,40 @@
                     <p style="margin-top: 0.75rem;">
                         My engineering mindset emphasizes pragmatic solutions: writing clean, well-tested code, reducing friction in user flows, and strictly adhering to modern security standards (CSRF defenses, CSP security headers, and rate-limiting).
                     </p>
+
+                    <!-- Interactive Architecture Pipeline -->
+                    <div class="arch-pipeline" id="arch-pipeline" role="tablist" aria-label="System Architecture Layers">
+                        <button type="button" class="arch-node active" data-arch="client" role="tab" aria-selected="true" id="arch-tab-client">
+                            <span class="arch-node-badge">01 · FRONTEND</span>
+                            <span class="arch-node-title">Client Layer</span>
+                            <span class="arch-node-desc">React & Livewire</span>
+                        </button>
+                        <button type="button" class="arch-node" data-arch="security" role="tab" aria-selected="false" id="arch-tab-security">
+                            <span class="arch-node-badge">02 · DEFENSE</span>
+                            <span class="arch-node-title">Security & RBAC</span>
+                            <span class="arch-node-desc">CSRF & Middleware</span>
+                        </button>
+                        <button type="button" class="arch-node" data-arch="engine" role="tab" aria-selected="false" id="arch-tab-engine">
+                            <span class="arch-node-badge">03 · BACKEND</span>
+                            <span class="arch-node-title">Core Engine</span>
+                            <span class="arch-node-desc">PHP 8.3 & Laravel</span>
+                        </button>
+                        <button type="button" class="arch-node" data-arch="data" role="tab" aria-selected="false" id="arch-tab-data">
+                            <span class="arch-node-badge">04 · STORAGE</span>
+                            <span class="arch-node-title">Database & Cache</span>
+                            <span class="arch-node-desc">MySQL & SQLite</span>
+                        </button>
+                    </div>
+
+                    <div class="arch-details-box" id="arch-details-box" role="region" aria-live="polite">
+                        <div class="arch-detail-title" id="arch-detail-title">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            <span>Client Layer (Interactive & Accessible)</span>
+                        </div>
+                        <div class="arch-detail-desc" id="arch-detail-desc">
+                            Crafted with semantic HTML5, reactive UI updates, zero bloat, and sub-100ms client rendering for responsive multi-device engagement.
+                        </div>
+                    </div>
 
                     <div class="metrics-row">
                         <div class="metric-item">
@@ -303,13 +307,15 @@
                     </p>
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- ==========================================================================
              SKILLS SECTION - CATEGORIZED INTERACTIVE GRID
              ========================================================================== -->
-        <section id="skills" class="container">
-            <div class="section-header reveal-item">
+        <section id="skills" class="section-block section-skills">
+            <div class="container">
+                <div class="section-header reveal-item">
                 <span class="section-tag">Tech Stack</span>
                 <h2>Technologies & Tooling</h2>
                 <p class="section-subtitle">Battle-tested tools and frameworks I leverage to design, build, and deploy high-performance applications.</p>
@@ -320,6 +326,12 @@
                 <button type="button" class="filter-btn" data-filter="backend">Backend & DB</button>
                 <button type="button" class="filter-btn" data-filter="frontend">Frontend</button>
                 <button type="button" class="filter-btn" data-filter="tools">DevOps & Tools</button>
+            </div>
+
+            <div class="skills-search-bar reveal-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="skills-search" placeholder="Search technical stack (e.g. PHP, Laravel, React, MySQL, RBAC)..." aria-label="Search skills by keyword">
+                <button type="button" id="skills-search-clear" class="skills-search-clear" aria-label="Clear skill search" hidden>&times;</button>
             </div>
 
             <div class="skills-grid" id="skills-grid">
@@ -478,173 +490,224 @@
                     </div>
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- ==========================================================================
              FEATURED PROJECTS SECTION
              ========================================================================== -->
-        <section id="projects" class="container">
-            <div class="section-header reveal-item">
-                <span class="section-tag">Portfolio Showcase</span>
-                <h2>Featured Engineering Projects</h2>
-                <p class="section-subtitle">Real-world applications built with high standards of security, maintainability, and user experience.</p>
-            </div>
+        <section id="projects" class="section-projects">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <span class="section-tag">Flagship Work</span>
+                    <h2>Featured Engineering Systems</h2>
+                    <p class="section-subtitle">Real-world production platforms built with rigorous standards of security, scalability, and UX design.</p>
+                </div>
 
-            <div class="projects-grid" id="projects-container">
-                <div class="project-card reveal-item">
-                    <div class="project-card-header">
-                        <div class="browser-mockup-bar" aria-hidden="true">
-                            <div class="browser-dots">
-                                <span class="b-dot red"></span>
-                                <span class="b-dot yellow"></span>
-                                <span class="b-dot green"></span>
+                <div class="projects-vertical-stack" id="projects-container">
+                    <!-- Project 1: SCJ -->
+                    <article class="project-showcase-card reveal-item" id="project-scj">
+                        <div class="project-showcase-media">
+                            <div class="browser-mockup-bar" aria-hidden="true">
+                                <div class="browser-dots">
+                                    <span class="b-dot red"></span>
+                                    <span class="b-dot yellow"></span>
+                                    <span class="b-dot green"></span>
+                                </div>
+                                <div class="browser-url-chip">
+                                    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    <span>dwcc-scj.site.je</span>
+                                </div>
                             </div>
-                            <div class="browser-url-chip">
-                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                                <span>dwcc-scj.site.je</span>
+                            <a href="http://dwcc-scj.site.je/index.php" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit School of Criminal Justice Live System">
+                                <span class="project-img-overlay-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                    <span>Visit Live Application</span>
+                                </span>
+                            </a>
+                            <img src="assets/projects/scj-portal.png" alt="School of Criminal Justice Portal Interface" class="project-showcase-img" loading="lazy">
+                            <span class="project-badge-tag badge-live"><span class="pulse-dot"></span> Live in Production</span>
+                        </div>
+                        <div class="project-showcase-content">
+                            <div class="project-meta-top">
+                                <span class="project-index-tag">01 / INSTITUTIONAL PLATFORM</span>
+                                <div class="project-live-indicator">
+                                    <span class="pulse-dot"></span>
+                                    <span>Active System</span>
+                                </div>
                             </div>
-                        </div>
-                        <a href="http://dwcc-scj.site.je/index.php" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit School of Criminal Justice Live System">
-                            <span class="project-img-overlay-btn">
-                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                <span>Visit Live App</span>
-                            </span>
-                        </a>
-                        <img src="assets/projects/scj-portal.png" alt="School of Criminal Justice Portal Interface" class="project-card-img" loading="lazy">
-                        <span class="project-badge-tag badge-live"><span class="pulse-dot"></span> Live in Production</span>
-                    </div>
-                    <div class="project-card-body">
-                        <h3 class="project-title">School of Criminal Justice (SCJ) System</h3>
-                        <p class="project-desc">
-                            Full-stack institutional website and portal featuring dual MySQL/SQLite engine support, multi-tier Role-Based Access Control (Admin, Faculty, Student), CSRF middleware protection, research archive search, and faculty directory management.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">PHP 8.3</span>
-                            <span class="tech-tag">MySQL / SQLite</span>
-                            <span class="tech-tag">Apache Stack</span>
-                            <span class="tech-tag">CSRF Security</span>
-                            <span class="tech-tag">CSS3</span>
-                        </div>
-                        <div class="project-footer-actions">
-                            <div class="project-links-group">
+                            <h3 class="project-title">School of Criminal Justice (SCJ) System</h3>
+                            <p class="project-desc">
+                                Full-stack institutional website and portal featuring dual MySQL/SQLite engine support, multi-tier Role-Based Access Control (Admin, Faculty, Student), CSRF middleware protection, research archive search, and faculty directory management.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="tech-tag">PHP 8.3</span>
+                                <span class="tech-tag">MySQL / SQLite</span>
+                                <span class="tech-tag">Apache Stack</span>
+                                <span class="tech-tag">CSRF Security</span>
+                                <span class="tech-tag">CSS3</span>
+                            </div>
+                            <button type="button" class="project-specs-toggle" aria-expanded="false" aria-controls="specs-scj">
+                                <div class="specs-toggle-left">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
+                                    <span>Architecture & System Specs</span>
+                                </div>
+                                <svg class="specs-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="project-specs-panel" id="specs-scj" hidden>
+                                <ul>
+                                    <li><strong>Dual DB Engine:</strong> Production MySQL with graceful fallback to SQLite for portable staging and zero-downtime offline testing.</li>
+                                    <li><strong>Security Defense:</strong> Custom CSRF token verification middleware and strict multi-tier RBAC authorization boundaries.</li>
+                                    <li><strong>Performance Tuning:</strong> Sub-80ms indexed student/faculty queries and optimized client-side asset caching.</li>
+                                </ul>
+                            </div>
+                            <div class="project-footer-actions">
                                 <a href="http://dwcc-scj.site.je/index.php" target="_blank" rel="noopener noreferrer" class="project-live-btn" title="Open Live Web Application">
                                     <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                    <span>Live Demo</span>
+                                    <span>Launch Live Demo</span>
                                 </a>
-                                <a href="https://github.com/drewmacaraig84-arch/SCJ" target="_blank" rel="noopener noreferrer" class="project-link-btn" title="View Source Code">
-                                    <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                    <span>Source</span>
-                                </a>
-                            </div>
-                            <div class="project-stats-meta">
-                                <span>Live system</span>
+                                <div class="project-stats-meta">
+                                    <span>dwcc-scj.site.je</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <div class="project-card reveal-item">
-                    <div class="project-card-header">
-                        <div class="browser-mockup-bar" aria-hidden="true">
-                            <div class="browser-dots">
-                                <span class="b-dot red"></span>
-                                <span class="b-dot yellow"></span>
-                                <span class="b-dot green"></span>
+                    <!-- Project 2: AmigaTravel -->
+                    <article class="project-showcase-card reveal-item" id="project-amiga">
+                        <div class="project-showcase-media">
+                            <div class="browser-mockup-bar" aria-hidden="true">
+                                <div class="browser-dots">
+                                    <span class="b-dot red"></span>
+                                    <span class="b-dot yellow"></span>
+                                    <span class="b-dot green"></span>
+                                </div>
+                                <div class="browser-url-chip">
+                                    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    <span>amigagracia.com</span>
+                                </div>
                             </div>
-                            <div class="browser-url-chip">
-                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                                <span>amigagracia.com</span>
+                            <a href="https://www.amigagracia.com/" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit Amiga Gracia Travel Services Live Website">
+                                <span class="project-img-overlay-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                    <span>Visit Live Application</span>
+                                </span>
+                            </a>
+                            <img src="assets/projects/amiga-travel.png" alt="Amiga Gracia Travel Services Platform Interface" class="project-showcase-img" loading="lazy">
+                            <span class="project-badge-tag badge-live"><span class="pulse-dot"></span> Live in Production</span>
+                        </div>
+                        <div class="project-showcase-content">
+                            <div class="project-meta-top">
+                                <span class="project-index-tag">02 / E-COMMERCE & BOOKING</span>
+                                <div class="project-live-indicator">
+                                    <span class="pulse-dot"></span>
+                                    <span>Active System</span>
+                                </div>
                             </div>
-                        </div>
-                        <a href="https://www.amigagracia.com/" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit Amiga Gracia Travel Services Live Website">
-                            <span class="project-img-overlay-btn">
-                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                <span>Visit Live App</span>
-                            </span>
-                        </a>
-                        <img src="assets/projects/amiga-travel.png" alt="Amiga Gracia Travel Services Platform Interface" class="project-card-img" loading="lazy">
-                        <span class="project-badge-tag badge-live"><span class="pulse-dot"></span> Live in Production</span>
-                    </div>
-                    <div class="project-card-body">
-                        <h3 class="project-title">AmigaTravel Tour & Booking Platform</h3>
-                        <p class="project-desc">
-                            Modern tour scheduling and reservation engine built on Laravel and Livewire with Filament back-office administration, automated invoice/ticket generation, and dynamic date availability checking.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">Laravel 13</span>
-                            <span class="tech-tag">Filament v3</span>
-                            <span class="tech-tag">Livewire 3</span>
-                            <span class="tech-tag">Tailwind CSS</span>
-                            <span class="tech-tag">Alpine.js</span>
-                        </div>
-                        <div class="project-footer-actions">
-                            <div class="project-links-group">
+                            <h3 class="project-title">AmigaTravel Tour & Booking Platform</h3>
+                            <p class="project-desc">
+                                Modern tour scheduling and reservation engine built on Laravel and Livewire with Filament back-office administration, automated invoice/ticket generation, and dynamic date availability checking.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="tech-tag">Laravel 13</span>
+                                <span class="tech-tag">Filament v3</span>
+                                <span class="tech-tag">Livewire 3</span>
+                                <span class="tech-tag">Tailwind CSS</span>
+                                <span class="tech-tag">Alpine.js</span>
+                            </div>
+                            <button type="button" class="project-specs-toggle" aria-expanded="false" aria-controls="specs-amiga">
+                                <div class="specs-toggle-left">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
+                                    <span>Architecture & System Specs</span>
+                                </div>
+                                <svg class="specs-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="project-specs-panel" id="specs-amiga" hidden>
+                                <ul>
+                                    <li><strong>Reactive Booking Engine:</strong> Real-time seat inventory checking powered by Livewire 3 and Alpine.js.</li>
+                                    <li><strong>Back-Office ERP:</strong> Filament v3 administration for dynamic tour schedules, booking approvals, and revenue reporting.</li>
+                                    <li><strong>Automated Document Pipeline:</strong> Dynamic server-side PDF ticket and receipt generation.</li>
+                                </ul>
+                            </div>
+                            <div class="project-footer-actions">
                                 <a href="https://www.amigagracia.com/" target="_blank" rel="noopener noreferrer" class="project-live-btn" title="Open Live Web Application">
                                     <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                    <span>Live Demo</span>
+                                    <span>Launch Live Demo</span>
                                 </a>
-                                <a href="https://github.com/drewmacaraig84-arch/AmigaTravel" target="_blank" rel="noopener noreferrer" class="project-link-btn" title="View Source Code">
-                                    <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                    <span>Source</span>
-                                </a>
-                            </div>
-                            <div class="project-stats-meta">
-                                <span>Live portal</span>
+                                <div class="project-stats-meta">
+                                    <span>amigagracia.com</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <div class="project-card reveal-item">
-                    <div class="project-card-header">
-                        <div class="browser-mockup-bar" aria-hidden="true">
-                            <div class="browser-dots">
-                                <span class="b-dot red"></span>
-                                <span class="b-dot yellow"></span>
-                                <span class="b-dot green"></span>
+                    <!-- Project 3: UAP -->
+                    <article class="project-showcase-card reveal-item" id="project-uap">
+                        <div class="project-showcase-media">
+                            <div class="browser-mockup-bar" aria-hidden="true">
+                                <div class="browser-dots">
+                                    <span class="b-dot red"></span>
+                                    <span class="b-dot yellow"></span>
+                                    <span class="b-dot green"></span>
+                                </div>
+                                <div class="browser-url-chip">
+                                    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    <span>uap-mindoro.railway.app</span>
+                                </div>
                             </div>
-                            <div class="browser-url-chip">
-                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                                <span>uap-mindoro.railway.app</span>
+                            <a href="https://uap-mindorochapter.up.railway.app/" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit UAP Mindoro Chapter Live Portal">
+                                <span class="project-img-overlay-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                    <span>Visit Live Application</span>
+                                </span>
+                            </a>
+                            <img src="assets/projects/uap-mindoro.png" alt="UAP Mindoro Chapter Portal Live Website Preview" class="project-showcase-img" loading="lazy">
+                            <span class="project-badge-tag badge-live"><span class="pulse-dot"></span> Live on Railway</span>
+                        </div>
+                        <div class="project-showcase-content">
+                            <div class="project-meta-top">
+                                <span class="project-index-tag">03 / ARCHITECTURAL PORTAL</span>
+                                <div class="project-live-indicator">
+                                    <span class="pulse-dot"></span>
+                                    <span>Active System</span>
+                                </div>
                             </div>
-                        </div>
-                        <a href="https://uap-mindorochapter.up.railway.app/" target="_blank" rel="noopener noreferrer" class="project-img-overlay" aria-label="Visit UAP Mindoro Chapter Live Portal">
-                            <span class="project-img-overlay-btn">
-                                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                <span>Visit Live App</span>
-                            </span>
-                        </a>
-                        <img src="assets/projects/uap-mindoro.png" alt="UAP Mindoro Chapter Portal Live Website Preview" class="project-card-img" loading="lazy">
-                        <span class="project-badge-tag badge-live"><span class="pulse-dot"></span> Live on Railway</span>
-                    </div>
-                    <div class="project-card-body">
-                        <h3 class="project-title">UAP-MC Architectural Chapter Portal</h3>
-                        <p class="project-desc">
-                            Official architectural chapter portal featuring member directory, partner showcases, CPD event documentation, and organization management — deployed live in production.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Railway PaaS</span>
-                            <span class="tech-tag">Responsive UI</span>
-                        </div>
-                        <div class="project-footer-actions">
-                            <div class="project-links-group">
+                            <h3 class="project-title">UAP-MC Architectural Chapter Portal</h3>
+                            <p class="project-desc">
+                                Official architectural chapter portal featuring member directory, partner showcases, CPD event documentation, and organization management — deployed live in production.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Railway PaaS</span>
+                                <span class="tech-tag">Responsive UI</span>
+                            </div>
+                            <button type="button" class="project-specs-toggle" aria-expanded="false" aria-controls="specs-uap">
+                                <div class="specs-toggle-left">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
+                                    <span>Architecture & System Specs</span>
+                                </div>
+                                <svg class="specs-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="project-specs-panel" id="specs-uap" hidden>
+                                <ul>
+                                    <li><strong>Cloud Deployment:</strong> Automated GitHub push-to-deploy continuous integration pipeline on Railway PaaS.</li>
+                                    <li><strong>Chapter Operations:</strong> Member roster verification, CPD credit tracking, and dynamic committee directory.</li>
+                                    <li><strong>Performance Focus:</strong> Lightweight semantic architecture ensuring instant page loads across devices.</li>
+                                </ul>
+                            </div>
+                            <div class="project-footer-actions">
                                 <a href="https://uap-mindorochapter.up.railway.app/" target="_blank" rel="noopener noreferrer" class="project-live-btn" title="Open Live Web Application">
                                     <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                    <span>Live Demo</span>
+                                    <span>Launch Live Demo</span>
                                 </a>
-                                <a href="https://github.com/drewmacaraig84-arch/uap_mc" target="_blank" rel="noopener noreferrer" class="project-link-btn" title="View Source Code">
-                                    <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                    <span>Source</span>
-                                </a>
-                            </div>
-                            <div class="project-stats-meta">
-                                <span>Live portal</span>
+                                <div class="project-stats-meta">
+                                    <span>uap-mindoro.railway.app</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -652,8 +715,9 @@
         <!-- ==========================================================================
              CERTIFICATIONS & VERIFIED BADGES SECTION
              ========================================================================== -->
-        <section id="certificates" class="container">
-            <div class="section-header reveal-item">
+        <section id="certificates" class="section-block section-certificates">
+            <div class="container">
+                <div class="section-header reveal-item">
                 <span class="section-tag">Credentials & Accreditations</span>
                 <h2>Certifications & Verified Badges</h2>
                 <p class="section-subtitle">Official industry certifications, national vocational qualifications, and accredited technical credentials earned through rigorous assessments.</p>
@@ -738,6 +802,12 @@
                 <button type="button" class="cert-filter-btn" data-filter="professional">Professional & National (2)</button>
                 <button type="button" class="cert-filter-btn" data-filter="web">Frontend & JavaScript (2)</button>
                 <button type="button" class="cert-filter-btn" data-filter="data">Database & Analytics (2)</button>
+            </div>
+
+            <div class="certs-search-bar reveal-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="certs-search" placeholder="Search verified credentials (e.g. CDSP, Java NC III, Cisco, SQL)..." aria-label="Search certifications by keyword">
+                <button type="button" id="certs-search-clear" class="certs-search-clear" aria-label="Clear certs search" hidden>&times;</button>
             </div>
 
             <div class="certs-grid" id="certs-container">
@@ -1046,13 +1116,15 @@
                     </div>
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- ==========================================================================
              EXPERIENCE & LEADERSHIP TIMELINE
              ========================================================================== -->
-        <section id="experience" class="container">
-            <div class="section-header reveal-item">
+        <section id="experience" class="section-block section-experience">
+            <div class="container">
+                <div class="section-header reveal-item">
                 <span class="section-tag">Career Journey</span>
                 <h2>Experience & Milestones</h2>
                 <p class="section-subtitle">Demonstrated commitment to technical growth, delivery discipline, and building impactful software.</p>
@@ -1125,13 +1197,15 @@
                     </div>
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- ==========================================================================
              CONTACT & FOOTER SECTION
              ========================================================================== -->
-        <section id="contact" class="container contact-section">
-            <div class="contact-card reveal-item">
+        <section id="contact" class="section-block section-contact">
+            <div class="container">
+                <div class="contact-card reveal-item">
                 <span class="section-tag">Let's Connect</span>
                 <h2 class="contact-title">Have a Project or Opportunity in Mind?</h2>
                 <p class="contact-desc">
@@ -1163,6 +1237,7 @@
                     <a href="mailto:macaraigdrew99@gmail.com" aria-label="Email">Email</a>
                     <a href="#home" aria-label="Back to Top">Back to Top &uarr;</a>
                 </div>
+            </div>
             </div>
         </section>
     </main>
