@@ -1,0 +1,17 @@
+{
+  "name": "Drew Macaraig | Full-Stack Software Developer",
+  "short_name": "Drew Macaraig",
+  "description": "Portfolio of Drew Macaraig, Full-Stack Developer specializing in secure PHP, Laravel, React, and MySQL applications.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#00f0ff",
+  "icons": [
+    {
+      "src": "./assets/og-preview.jpg",
+      "sizes": "1200x675",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

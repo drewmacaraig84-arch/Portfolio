@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow internal scripts/configs if any
+Disallow: /server.py
+
+# XML Sitemap for search engines
+Sitemap: https://drewmacaraig84-arch.github.io/Portfolio/sitemap.xml
