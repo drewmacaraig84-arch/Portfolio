@@ -40,11 +40,15 @@
     }
     </script>
 
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="interactive.css?v=4.0">
 </head>
 <body>
     <div class="bg-grid-pattern" aria-hidden="true"></div>
@@ -70,28 +74,6 @@
             </ul>
 
             <div class="nav-actions">
-                <div class="nav-status-badge" title="Status: Available for projects & roles">
-                    <span class="pulse-dot"></span>
-                    <span class="nav-status-text">Available</span>
-                </div>
-
-                <button type="button" class="sound-toggle-btn" id="sound-toggle" aria-label="Toggle UI Audio Experience" title="Toggle audio sound effects">
-                    <svg class="sound-on-icon" viewBox="0 0 24 24">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                    </svg>
-                    <svg class="sound-off-icon" viewBox="0 0 24 24">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                        <line x1="23" y1="9" x2="17" y2="15"></line>
-                        <line x1="17" y1="9" x2="23" y2="15"></line>
-                    </svg>
-                </button>
-
-                <button type="button" class="cmdk-trigger" id="cmdk-trigger" aria-label="Open command palette" aria-keyshortcuts="Control+K Meta+K" title="Search (Ctrl + K)">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <kbd class="cmdk-trigger-kbd">⌘K</kbd>
-                </button>
-
                 <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
                     <svg class="sun-icon" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4"></circle>
@@ -156,45 +138,6 @@
                         <a href="#contact" class="btn btn-secondary">
                             <span>Get in Touch</span>
                         </a>
-                    </div>
-
-                    <div class="hero-stats-row">
-                        <div class="hero-stat-item">
-                            <span class="hero-stat-val">4+</span>
-                            <span class="hero-stat-lbl">Years Crafting</span>
-                        </div>
-                        <div class="hero-stat-sep"></div>
-                        <div class="hero-stat-item">
-                            <span class="hero-stat-val">&lt;100ms</span>
-                            <span class="hero-stat-lbl">Target Latency</span>
-                        </div>
-                        <div class="hero-stat-sep"></div>
-                        <div class="hero-stat-item">
-                            <span class="hero-stat-val">100%</span>
-                            <span class="hero-stat-lbl">Ship Reliability</span>
-                        </div>
-                    </div>
-
-                    <!-- Minimalist 3D Core Interactive Toolbar -->
-                    <div class="hero-3d-toolbar" role="toolbar" aria-label="3D Background Controls">
-                        <div class="hero-3d-toolbar-badge" title="Click & drag background anywhere to rotate 3D core">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                            <span>Drag background to rotate</span>
-                        </div>
-                        <div class="hero-3d-geo-tabs" role="tablist" aria-label="3D Geometries">
-                            <button type="button" class="stage-control-btn active" data-geo="crystal" title="Prism Crystal Geometry">Crystal</button>
-                            <button type="button" class="stage-control-btn" data-geo="torus" title="Torus Loop Geometry">Torus</button>
-                            <button type="button" class="stage-control-btn" data-geo="gyro" title="Orbital Gyroscope Geometry">Orbital</button>
-                        </div>
-                        <div class="hero-3d-mat-tabs" role="group" aria-label="Shader Materials">
-                            <button type="button" class="stage-control-btn active" data-mat="glass" title="Frosted Glass Shader">Glass</button>
-                            <button type="button" class="stage-control-btn" data-mat="chrome" title="Liquid Chrome Shader">Chrome</button>
-                            <button type="button" class="stage-control-btn" data-mat="neon" title="Cyber Neon Shader">Neon</button>
-                        </div>
-                        <button type="button" class="hero-spin-btn" id="btn-spin-3d" title="Spin 3D core with momentum">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                            <span>Spin</span>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -1320,9 +1263,9 @@
         <span>Email copied to clipboard!</span>
     </div>
 
-    <script src="assets/js/three.min.js"></script>
-    <script src="assets/js/three-scene.js"></script>
-    <script src="script.js"></script>
-    <script src="interactive.js"></script>
+    <script src="assets/js/three.min.js?v=4.0"></script>
+    <script src="assets/js/three-scene.js?v=4.0"></script>
+    <script src="script.js?v=4.0"></script>
+    <script src="interactive.js?v=4.0"></script>
 </body>
 </html>

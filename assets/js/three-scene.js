@@ -73,16 +73,12 @@
 
     // --- Materials Palette ---
     const materials = {
-        glass: new THREE.MeshPhysicalMaterial({
+        glass: new THREE.MeshStandardMaterial({
             color: 0x6366f1,
             emissive: 0x1e1b4b,
-            emissiveIntensity: 0.5,
-            roughness: 0.15,
-            metalness: 0.2,
-            transmission: 0.6,
-            ior: 1.5,
-            transparent: true,
-            opacity: 0.88,
+            emissiveIntensity: 0.55,
+            roughness: 0.18,
+            metalness: 0.45,
             wireframe: false
         }),
         chrome: new THREE.MeshStandardMaterial({
@@ -101,23 +97,35 @@
         })
     };
 
-    let currentMaterialKey = 'glass';
+    let currentMaterialKey = 'neon';
 
     // --- 1. Shape: Crystal Icosahedron ---
     const crystalGeom = new THREE.IcosahedronGeometry(4.6, 0);
-    const crystalMesh = new THREE.Mesh(crystalGeom, materials.glass);
+    const crystalMesh = new THREE.Mesh(crystalGeom, materials.neon);
     mainGroup.add(crystalMesh);
 
-    // Inner facets for crystal
-    const innerCrystalGeom = new THREE.IcosahedronGeometry(3.2, 1);
-    const innerCrystalMat = new THREE.MeshBasicMaterial({
+    // Inner glowing core
+    const innerCoreGeom = new THREE.IcosahedronGeometry(2.35, 0);
+    const innerCoreMat = new THREE.MeshStandardMaterial({
+        color: 0x6366f1,
+        emissive: 0x4f46e5,
+        emissiveIntensity: 1.4,
+        roughness: 0.18,
+        metalness: 0.65
+    });
+    const innerCoreMesh = new THREE.Mesh(innerCoreGeom, innerCoreMat);
+    crystalMesh.add(innerCoreMesh);
+
+    // Outer shimmering wireframe lattice
+    const outerWireGeom = new THREE.IcosahedronGeometry(4.85, 1);
+    const outerWireMat = new THREE.MeshBasicMaterial({
         color: 0xa855f7,
         wireframe: true,
         transparent: true,
-        opacity: 0.45
+        opacity: 0.55
     });
-    const innerCrystalMesh = new THREE.Mesh(innerCrystalGeom, innerCrystalMat);
-    crystalMesh.add(innerCrystalMesh);
+    const outerWireMesh = new THREE.Mesh(outerWireGeom, outerWireMat);
+    crystalMesh.add(outerWireMesh);
 
     // --- 2. Shape: Torus Knot ---
     const torusGeom = new THREE.TorusKnotGeometry(3.4, 0.95, 128, 24);
@@ -286,12 +294,17 @@
         updateGroupPosition();
     }
     window.addEventListener('resize', handleResize);
+    window.addEventListener('load', handleResize);
+    setTimeout(handleResize, 150);
 
     // Visibility Observer
+    document.addEventListener('visibilitychange', function () {
+        isVisible = !document.hidden;
+    });
     if (heroSection && 'IntersectionObserver' in window) {
         const obs = new IntersectionObserver(function (entries) {
-            isVisible = entries[0].isIntersecting;
-        }, { threshold: 0.05 });
+            isVisible = entries[0].isIntersecting || entries[0].intersectionRatio > 0;
+        }, { threshold: 0 });
         obs.observe(heroSection);
     }
 
@@ -388,6 +401,11 @@
                 gyroCore.scale.set(scale, scale, scale);
             }
 
+            if (typeof innerCoreMesh !== 'undefined' && innerCoreMesh) {
+                innerCoreMesh.rotation.y -= 0.005;
+                innerCoreMesh.rotation.x += 0.0025;
+            }
+
             particles.rotation.y = elapsedTime * 0.02;
 
             lightCyan.position.x = 12 + targetX * 14;
@@ -411,6 +429,118 @@
             setTimeout(() => { updateGroupPosition(); }, 350);
         },
         toggleAutoRotate: function () { autoRotate = !autoRotate; return autoRotate; },
-        resize: handleResize
+        resize: handleResize,
+        applyTheme: applyThreeTheme
     };
+
+    // --- Theme Reactive Visual Adjustments (Light / Dark Mode) ---
+    function applyThreeTheme(theme) {
+        const isLight = theme === 'light';
+        if (isLight) {
+            ambientLight.intensity = 1.6;
+            dirLight.intensity = 2.0;
+            lightCyan.intensity = 4.2;
+            lightCyan.color.setHex(0x0284c7);
+            lightViolet.intensity = 3.8;
+            lightViolet.color.setHex(0x7c3aed);
+            
+            materials.glass.color.setHex(0x4f46e5);
+            materials.glass.emissive.setHex(0x312e81);
+            materials.glass.emissiveIntensity = 0.55;
+            materials.glass.roughness = 0.15;
+            materials.glass.metalness = 0.45;
+
+            materials.chrome.color.setHex(0x334155);
+            materials.chrome.metalness = 0.88;
+            materials.chrome.roughness = 0.2;
+
+            materials.neon.color.setHex(0x0284c7);
+            materials.neon.emissive.setHex(0x0369a1);
+            materials.neon.emissiveIntensity = 1.6;
+
+            if (typeof innerCoreMat !== 'undefined' && innerCoreMat) {
+                innerCoreMat.color.setHex(0x4338ca);
+                innerCoreMat.emissive.setHex(0x3730a3);
+                innerCoreMat.needsUpdate = true;
+            }
+
+            if (typeof outerWireMat !== 'undefined' && outerWireMat) {
+                outerWireMat.color.setHex(0x7c3aed);
+                outerWireMat.opacity = 0.75;
+                outerWireMat.needsUpdate = true;
+            }
+
+            coreMat.color.setHex(0x4f46e5);
+            coreMat.emissive.setHex(0x312e81);
+            ring1Mat.color.setHex(0x6366f1);
+            ring2Mat.color.setHex(0x0284c7);
+
+            particleMat.blending = THREE.NormalBlending;
+            particleMat.opacity = 0.65;
+        } else {
+            ambientLight.intensity = 0.95;
+            dirLight.intensity = 1.25;
+            lightCyan.intensity = 3.2;
+            lightCyan.color.setHex(0x00f0ff);
+            lightViolet.intensity = 2.8;
+            lightViolet.color.setHex(0xa855f7);
+
+            materials.glass.color.setHex(0x6366f1);
+            materials.glass.emissive.setHex(0x1e1b4b);
+            materials.glass.emissiveIntensity = 0.5;
+            materials.glass.roughness = 0.18;
+            materials.glass.metalness = 0.45;
+
+            materials.chrome.color.setHex(0xf1f5f9);
+            materials.chrome.metalness = 0.95;
+            materials.chrome.roughness = 0.08;
+
+            materials.neon.color.setHex(0x00f0ff);
+            materials.neon.emissive.setHex(0x0891b2);
+            materials.neon.emissiveIntensity = 1.8;
+
+            if (typeof innerCoreMat !== 'undefined' && innerCoreMat) {
+                innerCoreMat.color.setHex(0x6366f1);
+                innerCoreMat.emissive.setHex(0x4f46e5);
+                innerCoreMat.needsUpdate = true;
+            }
+
+            if (typeof outerWireMat !== 'undefined' && outerWireMat) {
+                outerWireMat.color.setHex(0xa855f7);
+                outerWireMat.opacity = 0.55;
+                outerWireMat.needsUpdate = true;
+            }
+
+            coreMat.color.setHex(0x38bdf8);
+            coreMat.emissive.setHex(0x0284c7);
+            ring1Mat.color.setHex(0x818cf8);
+            ring2Mat.color.setHex(0x06b6d4);
+
+            particleMat.blending = THREE.AdditiveBlending;
+            particleMat.opacity = 0.65;
+        }
+        materials.chrome.needsUpdate = true;
+        materials.glass.needsUpdate = true;
+        materials.neon.needsUpdate = true;
+        coreMat.needsUpdate = true;
+        ring1Mat.needsUpdate = true;
+        ring2Mat.needsUpdate = true;
+        particleMat.needsUpdate = true;
+    }
+
+    const initialThemeMode = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyThreeTheme(initialThemeMode);
+
+    if (window.MutationObserver) {
+        const themeObserver = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+                    applyThreeTheme(current);
+                }
+            });
+        });
+        themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    }
 })();
+

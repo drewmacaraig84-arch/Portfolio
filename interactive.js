@@ -100,6 +100,8 @@
         const next = force || (current === 'dark' ? 'light' : 'dark');
         root.setAttribute('data-theme', next);
         localStorage.setItem('drew_portfolio_theme', next);
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) metaTheme.setAttribute('content', next === 'light' ? '#f8fafc' : '#0a0e17');
         return next;
     }
 

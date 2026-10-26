@@ -34,6 +34,14 @@ function initTheme() {
     
     const initialTheme = savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'dark'); // Default to sleek dark mode
     root.setAttribute('data-theme', initialTheme);
+    
+    function updateMetaTheme(theme) {
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) {
+            metaTheme.setAttribute('content', theme === 'light' ? '#f8fafc' : '#0a0e17');
+        }
+    }
+    updateMetaTheme(initialTheme);
 
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
@@ -42,6 +50,7 @@ function initTheme() {
             
             root.setAttribute('data-theme', newTheme);
             localStorage.setItem('drew_portfolio_theme', newTheme);
+            updateMetaTheme(newTheme);
         });
     }
 }
