@@ -35,6 +35,13 @@
             live: 'https://uap-mindorochapter.up.railway.app/',
             repo: `${GITHUB}/uap_mc`,
             stack: 'PHP, MySQL, JavaScript, Railway'
+        },
+        {
+            key: 'uap-quezon',
+            name: 'UAP Quezon Province Chapter Portal & Super Admin Hub',
+            live: 'https://uap-quezonchapter.page.gd/public/homepage.php',
+            repo: `${GITHUB}/UAP-Quezon`,
+            stack: 'PHP 8.3, MySQL, Super Admin Suite, Telemetry'
         }
     ];
 
@@ -230,19 +237,19 @@
                 }
             },
             open: {
-                desc: 'open <1-3> : launch a live demo',
+                desc: 'open <1-4> : launch a live demo',
                 run(args) {
                     const project = findProject(args[0]);
-                    if (!project) return line([['Usage: open <1-3>. Run `projects` to see the list.', 'sh-warn']]);
+                    if (!project) return line([['Usage: open <1-4>. Run `projects` to see the list.', 'sh-warn']]);
                     line([['Launching ', 'sh-muted'], [project.name, 'sh-ok'], ['...', 'sh-muted']]);
                     openExternal(project.live);
                 }
             },
             source: {
-                desc: 'source <1-3> : view the code on GitHub',
+                desc: 'source <1-4> : view the code on GitHub',
                 run(args) {
                     const project = findProject(args[0]);
-                    if (!project) return line([['Usage: source <1-3>', 'sh-warn']]);
+                    if (!project) return line([['Usage: source <1-4>', 'sh-warn']]);
                     line([['Opening repository for ', 'sh-muted'], [project.name, 'sh-ok']]);
                     openExternal(project.repo);
                 }
@@ -454,7 +461,7 @@
             const n = parseInt(arg, 10);
             if (!Number.isNaN(n)) return PROJECTS[n - 1] || null;
             const q = arg.toLowerCase();
-            return PROJECTS.find(p => p.key === q || p.name.toLowerCase().includes(q)) || null;
+            return PROJECTS.find(p => p.key === q || p.key.replace('-', '').includes(q.replace('-', '')) || p.name.toLowerCase().includes(q)) || null;
         }
 
         function suggest(name) {
